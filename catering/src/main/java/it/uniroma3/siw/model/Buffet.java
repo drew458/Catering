@@ -2,8 +2,10 @@ package it.uniroma3.siw.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,10 +25,14 @@ public class Buffet {
 	@Column
 	private String descrizione;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private Chef chefPreparatore;
 	
-	@OneToMany
+	/**
+	 * La strategia di fetch è EAGER perche insieme al buffet si vogliono sempre vedere i piatti che lo compongono
+	 * Vengono abilitate le cascade perche l'associazione esprime una composizione
+	 */
+	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Piatto> piatti;
 
 	public Long getId() {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,10 @@ public class Chef {
 	@Column
 	private String nazionalita;
 	
-	@OneToMany
+	/**
+	 * La strategia di fetch è LAZY perche non è detto che si vogliono sempre vedere i buffet proposti dallo chef
+	 */
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Buffet> buffetProposti;
 
 	public Long getId() {
