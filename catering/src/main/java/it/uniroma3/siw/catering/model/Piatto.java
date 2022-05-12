@@ -1,4 +1,4 @@
-package it.uniroma3.siw.model;
+package it.uniroma3.siw.catering.model;
 
 import java.util.List;
 
