@@ -37,12 +37,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+    	auth.authenticationProvider(authenticationProvider());
     }
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.formLogin().loginPage("/login");
+    	http.authorizeRequests()
             .antMatchers("/").hasAnyAuthority("USER", "ADMIN")
             .antMatchers("/new").hasAnyAuthority("ADMIN")
             .antMatchers("/edit/**").hasAnyAuthority("ADMIN")

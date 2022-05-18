@@ -37,4 +37,9 @@ public class AppController {
 	     
 	    return "register_success";
 	}
+	
+	@PostMapping("/login")
+	public String processLogin(User user) { 
+	    return "login";
+	}
 }
