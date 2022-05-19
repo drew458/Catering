@@ -12,7 +12,6 @@ import javax.persistence.Table;
 public class Role {
 
 	@Id
-    @Column(name = "role_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
@@ -33,7 +32,5 @@ public class Role {
 
 	public void setName(String name) {
 		this.name = name;
-	}  
-    
-      
+	}
 }

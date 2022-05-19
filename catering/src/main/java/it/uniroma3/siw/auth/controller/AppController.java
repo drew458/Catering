@@ -21,25 +21,24 @@ public class AppController {
 		return "index";
 	}
 
-	@GetMapping("/register")
-	public String showRegistrationForm(Model model) {
+	@PostMapping("/login")
+	public String login(User user) { 
+	    return "login";
+	}
+
+	@GetMapping("/signup")
+	public String showSignupForm(Model model) {
 		model.addAttribute("user", new User());
 		return "signup_form";
 	}
 	
-	@PostMapping("/process_register")
-	public String processRegister(User user) {
+	@PostMapping("/signup_process")
+	public String processSignup(User user) {
 	    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	    String encodedPassword = passwordEncoder.encode(user.getPassword());
-	    user.setPassword(encodedPassword);
-	     
+	    user.setPassword(encodedPassword); 
 	    repository.save(user);
 	     
-	    return "register_success";
-	}
-	
-	@PostMapping("/login")
-	public String processLogin(User user) { 
-	    return "login";
+	    return "signup_success";
 	}
 }

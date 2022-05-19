@@ -52,6 +52,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin().permitAll()
             .and()
+            .rememberMe().tokenValiditySeconds(7 * 24 * 60 * 60) // expiration: 7 days
+            .key("AbcdefghiJklmNoPqRstUvXyz")
+            .and()
             .logout().permitAll()
             .and()
             .exceptionHandling().accessDeniedPage("/403")

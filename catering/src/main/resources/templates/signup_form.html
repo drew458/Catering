@@ -12,36 +12,40 @@
         <div>
             <h1>Registrazione</h1>
         </div>
-        <form th:action="@{/process_register}" th:object="${user}"
+        <form th:action="@{/signup_process}" th:object="${user}"
             method="post" style="max-width: 600px; margin: 0 auto;">
-        <div class="m-3">
-            <div class="form-group row">
-                <label class="col-4 col-form-label">E-mail: </label>
-                <div class="col-8">
-                    <input type="email" th:field="*{email}" class="form-control" required />
+            <div class="m-3">
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">E-mail: </label>
+                    <div class="col-8">
+                        <input type="email" th:field="*{email}" class="form-control" required />
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Password: </label>
+                    <div class="col-8">
+                        <input type="password" th:field="*{password}" class="form-control"
+                                required minlength="6" maxlength="10"/>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Conferma password: </label>
+                    <div class="col-8">
+                        <input type="password" th:field="*{password}" class="form-control"
+                                required minlength="6" maxlength="10"/>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="checkbox" name="is-admin" /> Admin
+                </div>
+                
+                <div>
+                    <button type="submit" class="btn btn-primary">Registrati</button>
                 </div>
             </div>
-             
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Password: </label>
-                <div class="col-8">
-                    <input type="password" th:field="*{password}" class="form-control"
-                            required minlength="6" maxlength="10"/>
-                </div>
-            </div>
-            
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Conferma password: </label>
-                <div class="col-8">
-                    <input type="password" th:field="*{password}" class="form-control"
-                            required minlength="6" maxlength="10"/>
-                </div>
-            </div>
-             
-            <div>
-                <button type="submit" class="btn btn-primary">Registrati</button>
-            </div>
-        </div>
         </form>
     </div>
 </body>
