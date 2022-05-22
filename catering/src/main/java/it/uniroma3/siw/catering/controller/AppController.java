@@ -1,4 +1,4 @@
-package it.uniroma3.siw.auth.controller;
+package it.uniroma3.siw.catering.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,8 +16,8 @@ public class AppController {
 	@Autowired
 	private UserRepository repository;
 
-	@GetMapping("")
-	public String viewHomePage() {
+	@GetMapping(value = {"/", "index"})
+	public String index(Model model) {
 		return "index";
 	}
 
