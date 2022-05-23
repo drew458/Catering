@@ -13,7 +13,7 @@
 	<artifactId>catering</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>catering</name>
-	<description>SIW teacher&apos;s project</description>
+	<description>SIW project assigned by the professor</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -51,18 +51,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>4.3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.16</version><!--$NO-MVN-MAN-VER$ -->
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
