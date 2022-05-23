@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import it.uniroma3.siw.auth.model.User;
-import it.uniroma3.siw.auth.repository.UserRepository;
+import it.uniroma3.siw.catering.auth.model.User;
+import it.uniroma3.siw.catering.auth.repository.UserRepository;
 
 @Controller
 public class AppController {

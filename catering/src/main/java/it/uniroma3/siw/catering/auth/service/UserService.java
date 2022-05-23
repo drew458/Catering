@@ -1,4 +1,4 @@
-package it.uniroma3.siw.auth.service;
+package it.uniroma3.siw.catering.auth.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.uniroma3.siw.auth.model.User;
-import it.uniroma3.siw.auth.repository.UserRepository;
+import it.uniroma3.siw.catering.auth.model.User;
+import it.uniroma3.siw.catering.auth.repository.UserRepository;
 
 @Service
 public class UserService {

@@ -1,4 +1,6 @@
-package it.uniroma3.siw.auth;
+package it.uniroma3.siw.catering.auth;
+
+import static it.uniroma3.siw.catering.auth.model.Credentials.ADMIN_ROLE;
 
 import javax.sql.DataSource;
 
@@ -13,8 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import static it.uniroma3.siw.auth.model.Credentials.ADMIN_ROLE;
 
 /**
  * The AuthConfiguration is a Spring Security Configuration.
