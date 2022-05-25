@@ -6,6 +6,4 @@ import it.uniroma3.siw.catering.model.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
-	// TODO: fix
-    public User findByEmail(String email);
 }
