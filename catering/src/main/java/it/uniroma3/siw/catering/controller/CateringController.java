@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import it.uniroma3.siw.catering.auth.model.User;
-import it.uniroma3.siw.catering.auth.repository.UserRepository;
+import it.uniroma3.siw.catering.model.User;
+import it.uniroma3.siw.catering.repository.UserRepository;
 import it.uniroma3.siw.catering.service.BuffetService;
 import it.uniroma3.siw.catering.service.ChefService;
 import it.uniroma3.siw.catering.service.PiattoService;

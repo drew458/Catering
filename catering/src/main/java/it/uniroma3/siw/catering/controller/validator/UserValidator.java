@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import it.uniroma3.siw.catering.auth.model.User;
+import it.uniroma3.siw.catering.model.User;
 
 /**
  * Validator for User

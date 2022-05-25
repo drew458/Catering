@@ -1,4 +1,4 @@
-package it.uniroma3.siw.catering.auth.model;
+package it.uniroma3.siw.catering.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

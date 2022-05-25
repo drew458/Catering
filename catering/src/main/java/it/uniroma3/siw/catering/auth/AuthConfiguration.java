@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.auth;
 
-import static it.uniroma3.siw.catering.auth.model.Credentials.ADMIN_ROLE;
+import static it.uniroma3.siw.catering.model.Credentials.ADMIN_ROLE;
 
 import javax.sql.DataSource;
 
