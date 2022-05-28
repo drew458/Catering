@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Esito registrazione')"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+    	<h4 th:text="#{header.registra}">Registrazione</h4>
+		<h1>Congratulazioni ti sei registrato!</h1>
+	</div>
+    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+</body>
+</html>
