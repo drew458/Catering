@@ -14,7 +14,7 @@ import it.uniroma3.siw.catering.service.ChefService;
 import it.uniroma3.siw.catering.service.PiattoService;
 
 @Controller
-public class CateringController {
+public class MainController {
 
 	@Autowired
 	private UserRepository repository;
