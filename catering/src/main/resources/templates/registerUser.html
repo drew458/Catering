@@ -54,43 +54,47 @@
         <form th:action="@{/register}" method="POST">
         	<div class="input-group mb-4">
 			 	<span th:text="#{register.nameSurname}" class="input-group-text">First and last name</span>
-			 	<input type="text" aria-label="First name" th:placeholder="#{register.firstName}" class="form-control" autofocus />
-			 	<input type="text" aria-label="Last name" th:placeholder="#{register.lastName}" class="form-control"/>
+			 	<input type="text" aria-label="First name" th:placeholder="#{register.firstName}" class="form-control"
+			 		th:field="${user.nome}" autofocus />
+			 	<input type="text" aria-label="Last name" th:placeholder="#{register.lastName}"
+			 		th:field="${user.cognome}" class="form-control"/>
 			</div>
         
             <!-- Email input -->
             <div class="form-floating mb-4">
-                <input type="email" id="signupEmail" class="form-control" th:placeholder="#{register.email}" required/>
+                <input type="email" id="signupEmail" class="form-control" th:placeholder="#{register.email}"
+                	th:field="${credentials.username}" required/>
                 <label th:text="#{register.email}" for="signupEmail">Indirizzo Email</label>
               </div>
             
-              <!-- Password input -->
-              <div class="form-floating mb-4">
-                <input type="password" id="signupPassword" class="form-control" th:placeholder="#{register.password}" required />
-                <label th:text="#{register.password}" for="signupPassword">Password</label>
-              </div>
+	        <!-- Password input -->
+	        <div class="form-floating mb-4">
+	        	<input type="password" id="signupPassword" class="form-control" th:placeholder="#{register.password}"
+	            	th:field="${credentials.password}" required />
+	        	<label th:text="#{register.password}" for="signupPassword">Password</label>
+	        </div>
 
-              <!-- Confirm password input -->
-              <div class="form-floating mb-4">
-                <input type="password" id="signupConfirmPassword" class="form-control" th:placeholder="#{register.confirmPassword}" required />
+            <!-- Confirm password input -->
+            <div class="form-floating mb-4">
+            	<input type="password" id="signupConfirmPassword" class="form-control" th:placeholder="#{register.confirmPassword}"
+                	required />
                 <label th:text="#{register.confirmPassword}" for="signupConfirmPassword">Conferma password</label>
-              </div>
-              
-              <!-- OAuth2 -->
-              <div class="text-center">
-                <p th:text="#{register.enterWith}">Entra con:</p>   
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="bi bi-google"></i>
-                </button>
-            
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="bi bi-github"></i>
-                </button>
-              </div>
-            
-              <!-- Submit button -->
-              <button th:text="#{register.register}" type="submit" class="btn btn-primary btn-block mb-4">Registrati</button>
             </div>
+              
+            <!-- OAuth2 -->
+            <div class="text-center">
+            	<p th:text="#{register.enterWith}">Entra con:</p>   
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                	<i class="bi bi-google"></i>
+                </button>
+            
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                	<i class="bi bi-github"></i>
+            	</button>
+            </div>
+            
+            <!-- Submit button -->
+            <button th:text="#{register.register}" type="submit" class="btn btn-primary btn-block mb-4">Registrati</button>
         </form>
     </div>
     

@@ -53,13 +53,15 @@
 		<form th:action="@{/login}" method="POST">
 			<!-- Email input -->
 		    <div class="form-floating mb-4">
-		     	<input type="email" id="loginEmail" class="form-control" th:placeholder="#{login.email}" required autofocus/>
+		     	<input name="username" type="email" id="loginEmail" class="form-control" th:placeholder="#{login.email}" 
+		     		required autofocus/>
 		     	<label th:text="#{login.email}" for="loginEmail">Indirizzo Email</label>
 		    </div>
 		      
 		    <!-- Password input -->
 		    <div class="form-floating mb-4">
-		     	<input type="password" id="loginPassword" class="form-control" th:placeholder="#{login.password}"/>
+		     	<input name="password" type="password" id="loginPassword" class="form-control" 
+		     		th:placeholder="#{login.password}"/>
 		    	<label th:text="#{login.password}" for="loginPassword">Password</label>
 		    </div>
 		  
