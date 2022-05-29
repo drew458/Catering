@@ -16,7 +16,7 @@
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="index.html">Catering</a>
+			<a class="navbar-brand" th:href="@{/}">Catering</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
 					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -82,7 +82,8 @@
 		  
 		    <!-- Register buttons -->
 		    <div class="text-center">
-	      		<p th:text="#{login.notRegistered}">Non sei iscritto? <a th:text="#{login.register}" href="#!">Registrati</a></p>
+	      		<span th:text="#{login.notRegistered}">Non sei iscritto?</span> 
+	      		<span><a th:text="#{login.register}" th:href="@{/register}">Registrati</a></span>
 		     	<p th:text="#{login.alternativeLogin}">oppure entra con:</p>          
 		     	<button type="button" class="btn btn-link btn-floating mx-1">
 		        	<i class="bi bi-google"></i>
