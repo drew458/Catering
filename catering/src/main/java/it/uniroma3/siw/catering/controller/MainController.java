@@ -29,18 +29,18 @@ public class MainController {
 	@GetMapping("/chef")
 	public String chef(Model model) {
 		model.addAttribute("chef", this.chefService.findAll());
-		return "chef.html";
+		return "chef";
 	}
 	
 	@GetMapping("/buffet")
 	public String buffet(Model model) {
 		model.addAttribute("buffet", this.buffetService.findAll());
-		return "buffet.html";
+		return "buffet";
 	}
 	
 	@GetMapping("/piatti")
 	public String piatti(Model model) {
 		model.addAttribute("piatto", this.piattoService.findAll());
-		return "piatti.html";
+		return "piatti";
 	}
 }

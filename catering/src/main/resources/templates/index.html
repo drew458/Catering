@@ -20,7 +20,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				  <li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="index.html">Home</a>
 				  </li>
@@ -33,19 +33,23 @@
 				  <li class="nav-item">
 					<a class="nav-link" th:href="@{/piatti}">Piatti</a>
 				  </li>
-				</ul>
+				</ul> -->
 				<form class="d-flex" role="search">
 				  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 				  <button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
-			  </div>
+			</div>
 		</div>
 	</nav>
 	
 	<div class="container text-center">
-    	<h1>Benvenuto</h1>
-    	<h3><a th:href="/@{/login}">Login</a></h3>
-    	<h3><a th:href="/@{/signup}">Registrati</a></h3>
+		<h1 th:text="#{index.welcome}">Benvenuto</h1>
+		<div>
+			<a th:href="@{/login}" th:text="#{index.login}">Accedi</a>
+		</div>
+		<div>
+			<a th:href="@{/register}" th:text="#{index.register}">Registrati</a>
+		</div>
 	</div>
      
     

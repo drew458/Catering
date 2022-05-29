@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.catering.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.catering.controller.validator.UserValidator;
@@ -34,17 +35,17 @@ public class AuthenticationController {
 		return "registerUser";
 	}
 
-	@GetMapping("login") 
+	@GetMapping("/login") 
 	public String showLoginForm (Model model) {
 		return "loginForm";
 	}
 
-	@GetMapping("logout") 
+	@GetMapping("/logout") 
 	public String logout(Model model) {
 		return "index";
 	}
 
-	@GetMapping("default")
+	@GetMapping("/default")
 	public String defaultAfterLogin(Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
@@ -54,7 +55,7 @@ public class AuthenticationController {
 		return "home";
 	}
 
-	@GetMapping("register")
+	@PostMapping("/register")
 	public String registerUser(@ModelAttribute("user") User user, BindingResult userBindingResult,
 			@ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult,
 			Model model) {
