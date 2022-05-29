@@ -50,15 +50,15 @@
 	    </div>
 		<form th:action="@{/login}" method="POST">
 			<!-- Email input -->
-		    <div class="form-outline mb-4">
-		     	<input type="email" id="loginEmail" class="form-control" />
-		     	<label th:text="#{login.email}" class="form-label" for="loginEmail">Indirizzo Email</label>
+		    <div class="form-floating mb-4">
+		     	<input type="email" id="loginEmail" class="form-control" th:placeholder="#{login.email}" required autofocus/>
+		     	<label th:text="#{login.email}" for="loginEmail">Indirizzo Email</label>
 		    </div>
 		      
 		    <!-- Password input -->
-		    <div class="form-outline mb-4">
-		     	<input type="password" id="loginPassword" class="form-control" />
-		    	<label th:text="#{login.password}" class="form-label" for="loginPassword">Password</label>
+		    <div class="form-floating mb-4">
+		     	<input type="password" id="loginPassword" class="form-control" th:placeholder="#{login.password}"/>
+		    	<label th:text="#{login.password}" for="loginPassword">Password</label>
 		    </div>
 		  
 		    <!-- 2 column grid layout for inline styling -->

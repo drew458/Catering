@@ -51,21 +51,21 @@
         </div>
         <form th:action="@{/register}" method="POST">
             <!-- Email input -->
-            <div class="form-outline mb-4">
-                <input type="email" id="signupEmail" class="form-control" />
-                <label th:text="#{register.email}" class="form-label" for="signupEmail">Indirizzo Email</label>
+            <div class="form-floating mb-4">
+                <input type="email" id="signupEmail" class="form-control" th:placeholder="#{register.email}" required autofocus/>
+                <label th:text="#{register.email}" for="signupEmail">Indirizzo Email</label>
               </div>
             
               <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input type="password" id="signupPassword" class="form-control" />
-                <label th:text="#{register.password}" class="form-label" for="signupPassword">Password</label>
+              <div class="form-floating mb-4">
+                <input type="password" id="signupPassword" class="form-control" th:placeholder="#{register.password}" required />
+                <label th:text="#{register.password}" for="signupPassword">Password</label>
               </div>
 
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input type="password" id="signupConfirmPassword" class="form-control" />
-                <label th:text="#{register.confirmPassword}" class="form-label" for="signupConfirmPassword">Conferma password</label>
+              <!-- Confirm password input -->
+              <div class="form-floating mb-4">
+                <input type="password" id="signupConfirmPassword" class="form-control" th:placeholder="#{register.confirmPassword}" required />
+                <label th:text="#{register.confirmPassword}" for="signupConfirmPassword">Conferma password</label>
               </div>
               
               <!-- OAuth2 -->
