@@ -22,37 +22,45 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				  <li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="index.html">Home</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" th:href="@{/chef}">Chef</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" th:href="@{/buffet}">Buffet</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" th:href="@{/piatti}">Piatti</a>
-				  </li>
-				</ul> -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="index.html">Home</a>
+					 </li>
+					 <li class="nav-item">
+						<a class="nav-link" th:text="#{navbar.chef}" th:href="@{/chef}">Chef</a>
+					 </li>
+					 <li class="nav-item">
+						<a class="nav-link" th:text="#{navbar.buffet}" th:href="@{/buffet}">Buffet</a>
+					 </li>
+					 <li class="nav-item">
+						<a class="nav-link" th:text="#{navbar.dishes}" th:href="@{/piatti}">Piatti</a>
+					 </li>
+				</ul>
 				<form class="d-flex" role="search">
-				  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-				  <button class="btn btn-outline-success" type="submit">Search</button>
+				 	<input class="form-control me-2" type="search" th:placeholder="#{navbar.search}" aria-label="Search">
+				 	<button class="btn btn-outline-success" type="submit">
+				 		<i class="bi bi-search"></i>
+				 	</button>
 				</form>
 			</div>
 		</div>
 	</nav>
 
 
-	<div class="container text-center">
-        <div>
+	<div class="container text-center mt-4">
+        <div class="mb-4">
             <h1 th:text="#{register.registration}">Registrazione</h1>
         </div>
         <form th:action="@{/register}" method="POST">
+        	<div class="input-group mb-4">
+			 	<span th:text="#{register.nameSurname}" class="input-group-text">First and last name</span>
+			 	<input type="text" aria-label="First name" th:placeholder="#{register.firstName}" class="form-control" autofocus />
+			 	<input type="text" aria-label="Last name" th:placeholder="#{register.lastName}" class="form-control"/>
+			</div>
+        
             <!-- Email input -->
             <div class="form-floating mb-4">
-                <input type="email" id="signupEmail" class="form-control" th:placeholder="#{register.email}" required autofocus/>
+                <input type="email" id="signupEmail" class="form-control" th:placeholder="#{register.email}" required/>
                 <label th:text="#{register.email}" for="signupEmail">Indirizzo Email</label>
               </div>
             
