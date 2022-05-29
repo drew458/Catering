@@ -14,8 +14,14 @@ public class ChefController {
 	@Autowired
 	ChefService chefService;
 	
-	@GetMapping("/prodotto/{id}")
-    public String getPersona(@PathVariable("id") Long id, Model model) {
+	@GetMapping("/chefList")
+	public String getChefList(Model model) {
+		model.addAttribute("chefs", this.chefService.findAll());
+		return "chefList";
+	}
+	
+	@GetMapping("/chef/{id}")
+    public String getChef(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("prodotto", this.chefService.findById(id));
     	return "chef";
     }

@@ -27,13 +27,13 @@
 						<a class="nav-link active" aria-current="page" href="index.html">Home</a>
 					 </li>
 					 <li class="nav-item">
-						<a class="nav-link" th:text="#{navbar.chef}" th:href="@{/chef}">Chef</a>
+						<a class="nav-link" th:text="#{navbar.chef}" th:href="@{/chefList}">Chef</a>
 					 </li>
 					 <li class="nav-item">
-						<a class="nav-link" th:text="#{navbar.buffet}" th:href="@{/buffet}">Buffet</a>
+						<a class="nav-link" th:text="#{navbar.buffet}" th:href="@{/buffetList}">Buffet</a>
 					 </li>
 					 <li class="nav-item">
-						<a class="nav-link" th:text="#{navbar.dishes}" th:href="@{/piatti}">Piatti</a>
+						<a class="nav-link" th:text="#{navbar.dishes}" th:href="@{/dishList}">Piatti</a>
 					 </li>
 				</ul>
 				<form class="d-flex" role="search">
@@ -49,13 +49,20 @@
 
     <div>
     	<h4 th:text="#{header.menuUtente}">Menu</h4>
-		<div>
-			<a href="prodotto" th:href="@{/prodotto}">Elenco prodotti</a>
-   		</div>
+    		<ul class="list-group">
+				<li class="list-group-item">
+					<a th:href="@{/chefList}" th:text="#{navbar.chef}">Chefs</a>
+				</li>
+				<li class="list-group-item">
+					<a th:href="@{/buffetList}" th:text="#{navbar.buffet}">Buffet</a>
+				</li>
+				<li class="list-group-item">
+					<a th:href="@{/dishList}" th:text="#{navbar.dishes}">Dishes</a>
+				</li>
+			</ul>
    		<div>
 			<a th:href="@{/logout}">Logout</a>
    		</div>
-   		
     </div>
     
 	
