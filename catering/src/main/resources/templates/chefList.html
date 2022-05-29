@@ -47,16 +47,43 @@
 	</nav>
 	<!-- END Navbar -->
 
-    <div>
-    	<h4 th:text="#{header.menuUtente}">Menu</h4>
-		<div>
-			<a href="prodotto" th:href="@{/prodotto}">Elenco prodotti</a>
-   		</div>
-   		<div>
-			<a th:href="@{/logout}">Logout</a>
-   		</div>
-   		
-    </div>
+	<main class="my-5">
+		<div class="container">
+			<!-- <section>
+		    	<div id="intro" class="p-5 text-center bg-light shadow-5 rounded-5 mb-5">
+		      		<h1 class="mb-3 h2">Learn Bootstrap 5 with MDB</h1>
+		      		<p class="mb-3">Best and free guide of responsive web design</p>
+		      		<a class="btn btn-primary m-2" href="https://www.youtube.com/watch?v=c9B4TPnak1A" role="button" rel="nofollow"
+		        		target="_blank">Start tutorial />
+		      		<a class="btn btn-primary m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank"
+		        		role="button">Download MDB UI KIT</a>
+		    	</div>
+		 	</section> -->
+	
+	     	<section class="text-center">
+		    	<h4 th:text="#{chef.header}" class="mb-5"><strong>Chefs</strong></h4>
+		          
+		      	<ul>
+		      		<li th:each="chef : ${chefs}">
+		      			<div class="col-lg-4 col-md-6 mb-4">
+				        	<div class="card">
+				          		<div class="card-img-top">
+				          			<img src="'/static/' + ${chef.imageUrl}" class="img-fluid" />
+				          		</div>
+					          	<div class="card-body">
+					            	<h5 th:text="${chef.nome}" class="card-title">Chef name</h5>
+					            	<span th:text="#{chefList.originCountry} " class="card-text">Origin country</span>
+					            	<span th:text="${chef.nazionalita}" class="card-text">Italian</span>
+					            	<a th:text="#{chefList.seeMore}" 
+					            		th:href="@{'/chef' + '/' + ${chef.id}}" class="btn btn-primary">See more</a>
+					          	</div>
+			        		</div>
+      					</div>
+		      		</li>          	
+		      	</ul>
+	      	</section>      
+	    </div>
+	</main>
     
 	
 	<!-- Bootstrap Bundle with Popper -->

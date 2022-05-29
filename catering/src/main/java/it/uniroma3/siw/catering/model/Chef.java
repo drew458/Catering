@@ -18,6 +18,7 @@ public class Chef {
 	private String nome;
 	private String cognome;
 	private String nazionalita;
+	private String imageUrl;
 	
 	/**
 	 * La strategia di fetch è LAZY perche non è detto che si vogliono sempre vedere i buffet proposti dallo chef
@@ -57,6 +58,14 @@ public class Chef {
 		this.nazionalita = nazionalita;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	public List<Buffet> getBuffetProposti() {
 		return buffetProposti;
 	}
@@ -68,12 +77,13 @@ public class Chef {
 	public Chef() {
 	}
 
-	public Chef(Long id, String nome, String cognome, String nazionalita, List<Buffet> buffetProposti) {
+	public Chef(Long id, String nome, String cognome, String nazionalita, String imageUrl, List<Buffet> buffetProposti) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.nazionalita = nazionalita;
+		this.imageUrl = imageUrl;
 		this.buffetProposti = buffetProposti;
 	}
 	
