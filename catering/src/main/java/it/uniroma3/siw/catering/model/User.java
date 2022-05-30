@@ -20,12 +20,6 @@ public class User {
 	
 	@Column(nullable=false)
 	private String cognome;
-	
-	@Column(nullable=false)
-	private String username;
-	
-	@Column(nullable=false)
-	private String password;
 
 	public Long getId() {
 		return id;
@@ -51,31 +45,13 @@ public class User {
 		this.cognome = cognome;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public User() {	}
 
-	public User(Long id, String nome, String cognome, String username, String password) {
+	public User(Long id, String nome, String cognome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
-		this.username = username;
-		this.password = password;
 	}
 
 	@Override
