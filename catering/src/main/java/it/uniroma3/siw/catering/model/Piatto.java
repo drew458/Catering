@@ -3,6 +3,7 @@ package it.uniroma3.siw.catering.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,10 @@ public class Piatto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(nullable = false)
 	private String nome;
+	
 	private String descrizione;
 	
 	/**

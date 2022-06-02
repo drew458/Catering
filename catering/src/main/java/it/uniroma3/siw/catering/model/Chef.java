@@ -2,6 +2,7 @@ package it.uniroma3.siw.catering.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,9 +16,15 @@ public class Chef {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(nullable = false)
 	private String nome;
+	
+	@Column(nullable = false)
 	private String cognome;
+	
 	private String nazionalita;
+	
 	private String imageUrl;
 	
 	/**
