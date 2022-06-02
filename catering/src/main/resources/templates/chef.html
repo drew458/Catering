@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles">
-		<title th:text="#{chef.title}">Chef - Catering</title>
-	</head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{chef.title})">
+</head>
 <body>
 	<!-- START Navbar -->
 	<nav th:replace="fragments/base.html :: navbar"></nav>

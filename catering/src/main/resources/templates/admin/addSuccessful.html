@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles">
+<head th:replace="fragments/base.html :: headerfiles(title=#{adminHome.title})">
     <title th:text="#{adminHome.title}">Admin - Catering</title>
 <body>
 	<!-- START Navbar -->
