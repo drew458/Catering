@@ -6,21 +6,6 @@
 	<!-- START Navbar -->
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->
-
-    <!-- <div class="container text-center mt-4">
-    	<h4 th:text="#{home.header}">What do you want to see?</h4>
-		<ul class="list-group">
-			<li class="list-group-item">
-				<a th:href="@{/chefList}" th:text="#{navbar.chef}">Chefs</a>
-			</li>
-			<li class="list-group-item">
-				<a th:href="@{/buffetList}" th:text="#{navbar.buffet}">Buffet</a>
-			</li>
-			<li class="list-group-item">
-				<a th:href="@{/dishList}" th:text="#{navbar.dishes}">Dishes</a>
-			</li>
-		</ul>
-    </div> -->
     
     <div class="container text-center mt-4">
     	<h4 th:text="#{home.header}">What do you want to see?</h4>
@@ -41,7 +26,7 @@
 	    		<div class="col-lg-4 col-md-6 mb-4">
 		        	<div class="card">
 		          		<div class="card-img-top">
-		          			<img src="buffets.jpg" class="img-fluid" />
+		          			<img src="buffets.jpg" class="img-fluid">
 		          		</div>
 			          	<div class="card-body">
 			            	<h5><a th:href="@{/buffetList}" th:text="#{navbar.buffet}">Buffet</a></h5>
@@ -52,7 +37,7 @@
     			<div class="col-lg-4 col-md-6 mb-4">
 		        	<div class="card">
 		          		<div class="card-img-top">
-		          			<img src="dishes.jpg" class="img-fluid" />
+		          			<img src="dishes.jpg" class="img-fluid">
 		          		</div>
 			          	<div class="card-body">
 			            	<h5><a th:href="@{/dishList}" th:text="#{navbar.dishes}">Dishes</a></h5>
