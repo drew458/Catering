@@ -48,6 +48,14 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 // tutti gli utenti autenticati possono accere alle pagine rimanenti 
                 .anyRequest().authenticated()
+                
+                //login con OAuth2
+                .and().oauth2Login()
+                // la pagina di login si trova a /login
+                // NOTA: Spring gestisce il post di login automaticamente
+                .loginPage("/login")
+                // se il login ha successo, si viene rediretti al path /default
+                .defaultSuccessUrl("/default")
 
                 // login paragraph: qui definiamo come è gestita l'autenticazione
                 // usiamo il protocollo formlogin 

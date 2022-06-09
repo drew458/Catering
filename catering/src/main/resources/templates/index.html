@@ -4,18 +4,62 @@
 </head>
 <body>
 	<!-- START Navbar -->
-	<nav th:replace="fragments/base.html :: nonLoggedInNavbar"></nav>
+	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->
 	
 	<div class="container text-center mt-4">
 		<h1 th:text="#{index.welcome}">Benvenuto</h1>
-		<div>
+		<h3 sec:authorize="isAuthenticated()" sec:authentication="name"> </h3>
+		
+		<div sec:authorize="isAnonymous()">
 			<a th:href="@{/login}" th:text="#{index.login}">Accedi</a>
 		</div>
-		<div>
+		
+		<div sec:authorize="isAnonymous()">
 			<a th:href="@{/register}" th:text="#{index.register}">Registrati</a>
 		</div>
 	</div>
+	
+	<div sec:authorize="isAuthenticated()" class="container text-center mt-4">
+    	<h4 th:text="#{home.header}">What do you want to see?</h4>
+    	
+    	<div class="container mt-4">
+	    	<div class="row">
+	    		<div class="col-lg-4 col-md-6 mb-4">
+		        	<div class="card">
+		          		<div class="card-img-top">
+		          			<img src="chefs.jpg" class="img-fluid">
+		          		</div>
+			          	<div class="card-body">
+			            	<h5><a th:href="@{/chefList}" th:text="#{navbar.chef}">Chefs</a></h5>
+			          	</div>
+	        		</div>
+	    		</div>
+	    		
+	    		<div class="col-lg-4 col-md-6 mb-4">
+		        	<div class="card">
+		          		<div class="card-img-top">
+		          			<img src="buffets.jpg" class="img-fluid">
+		          		</div>
+			          	<div class="card-body">
+			            	<h5><a th:href="@{/buffetList}" th:text="#{navbar.buffet}">Buffet</a></h5>
+			          	</div>
+	        		</div>
+				</div>
+	    		
+    			<div class="col-lg-4 col-md-6 mb-4">
+		        	<div class="card">
+		          		<div class="card-img-top">
+		          			<img src="dishes.jpg" class="img-fluid">
+		          		</div>
+			          	<div class="card-body">
+			            	<h5><a th:href="@{/dishList}" th:text="#{navbar.dishes}">Dishes</a></h5>
+			          	</div>
+	        		</div>
+				</div>
+	    	</div>
+	    </div>
+    </div>
 	
     <!-- Bootstrap Bundle with Popper -->
     <script th:replace="fragments/base.html :: bootstrapJS" />
