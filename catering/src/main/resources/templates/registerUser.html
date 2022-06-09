@@ -44,13 +44,17 @@
             <!-- OAuth2 -->
             <div class="text-center">
             	<p th:text="#{register.enterWith}">Entra con:</p>   
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                	<i class="bi bi-google"></i>
-                </button>
-            
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                	<i class="bi bi-github"></i>
-            	</button>
+                <form class="d-inline" action="login/oauth2/code/google" method="get">
+		     		<button type="submit" class="btn btn-link btn-floating mx-1"> 
+		        		<i class="bi bi-google"></i>
+		      		</button>
+	     		</form>
+	     	
+		     	<form class="d-inline" action="login/oauth2/code/github" method="get">
+		     		<button type="submit" class="btn btn-link btn-floating mx-1">
+		        		<i class="bi bi-github"></i>
+		      		</button>
+		     	</form>
             </div>
             
             <!-- Submit button -->
