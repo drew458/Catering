@@ -27,7 +27,7 @@ public class AuthenticationController {
 
 	@Autowired
 	private CredentialsValidator credentialsValidator;
-
+	
 	@GetMapping("/register")
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new User());
@@ -36,7 +36,7 @@ public class AuthenticationController {
 	}
 
 	@GetMapping("/login") 
-	public String showLoginForm (Model model) {
+	public String showLoginForm (Model model) {		
 		return "loginForm";
 	}
 
