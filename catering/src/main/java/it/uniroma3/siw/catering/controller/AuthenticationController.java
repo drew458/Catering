@@ -42,7 +42,7 @@ public class AuthenticationController {
 	private CredentialsValidator credentialsValidator;
 	
 	@GetMapping("/register")
-	public String showRegisterForm (Model model) {
+	public String showRegistrationForm(Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
 		return "registerUser";
@@ -56,6 +56,12 @@ public class AuthenticationController {
 	@GetMapping("/logout") 
 	public String logout(Model model) {
 		return "index";
+	}
+	
+	@GetMapping("/resetPassword")
+	public String showResetPasswordForm (Model model) {
+		model.addAttribute("credentials", new Credentials());
+		return "resetPasswordForm";
 	}
 	
 	@GetMapping("/default")
@@ -121,5 +127,27 @@ public class AuthenticationController {
 			return "registrationSuccessful";
 		}
 		return "registerUser";
+	}
+	
+	@PostMapping("/resetPassword")
+	public String resetPassword(@ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult) {
+		// validate credentials fields
+		this.credentialsValidator.validate(credentials, credentialsBindingResult);
+
+		// if it hasn't invalid contents, store the Credentials into the DB
+		if(!credentialsBindingResult.hasErrors()) {
+			// get the user and store the credentials;
+			// this also stores the User, thanks to Cascade.ALL policy
+			try {
+				credentials.setUser(credentialsService.getCredentials(credentials.getUsername()).getUser());
+				credentialsService.saveCredentials(credentials);
+				return "resetPasswordSuccessful";
+			}
+			// user not found
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "resetPasswordForm";
 	}
 }
