@@ -62,10 +62,10 @@ public class AuthenticationController {
 	public String defaultAfterLogin(Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("user", credentials.getUser());
 		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
 			return "admin/home";
 		}
-		model.addAttribute("user", credentialsService.getCredentials(userDetails.getUsername()).getUser());
 		return "index";
 	}
 
