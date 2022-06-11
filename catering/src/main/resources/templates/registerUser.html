@@ -36,8 +36,8 @@
 
             <!-- Confirm password input -->
             <div class="form-floating mb-4">
-            	<input type="password" id="signupConfirmPassword" class="form-control" th:placeholder="#{register.confirmPassword}"
-                	required />
+            	<input th:field="${credentials.confirmPassword}" type="password" id="signupConfirmPassword" class="form-control" 
+					th:placeholder="#{register.confirmPassword}" required />
                 <label th:text="#{register.confirmPassword}" for="signupConfirmPassword">Conferma password</label>
             </div>
             

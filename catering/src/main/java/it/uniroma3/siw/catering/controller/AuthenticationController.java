@@ -69,7 +69,7 @@ public class AuthenticationController {
 		return "index";
 	}
 
-	@GetMapping("/OauthDefault")
+	@GetMapping("/oauthDefault")
 	public String defaultAfterOAuthLogin(Model model, OAuth2AuthenticationToken authentication) {		
 		// credentials are null, user got logged in via OAuth 2
 		// get the client corresponding to the current user token
