@@ -9,6 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import it.uniroma3.siw.catering.model.Credentials;
 import it.uniroma3.siw.catering.repository.CredentialsRepository;
 
@@ -36,13 +38,25 @@ public class CredentialsService {
     @Transactional
     public Credentials saveCredentials(Credentials credentials) {
         credentials.setRole(Credentials.DEFAULT_ROLE);
-        credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
+        
+        if(credentials.getUser().getCognome()==null) {
+        	credentials.getUser().setCognome("OAuthDefault");
+        }
+        
+        try {
+        	credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
+        }
+        catch(Exception e) {
+        	credentials.setPassword(this.passwordEncoder.encode(RandomStringUtils.randomAlphanumeric(10)));
+        }
+        
         return this.credentialsRepository.save(credentials);
     }
+    
     @Transactional
     public String getRoleAuthenticated() {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.getCredentials(userDetails.getUsername());
     	return credentials.getRole();
-    }
+    }    
 }

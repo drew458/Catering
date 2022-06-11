@@ -51,11 +51,6 @@
       		<span th:text="#{login.notRegistered}">Non sei iscritto?</span> 
       		<span><a th:text="#{login.register}" th:href="@{/register}">Registrati</a></span>
 	     	<p th:text="#{login.alternativeLogin}">oppure entra con:</p>
-     		<!-- <form class="d-inline" action="login/oauth2/code/google" method="get">
-	     		<button type="submit" class="btn btn-link btn-floating mx-1"> 
-	        		<i class="bi bi-google"></i>
-	      		</button>
-     		</form> -->
      		<form class="d-inline" action="/oauth2/authorization/google" method="get">
 	     		<button type="submit" class="btn btn-link btn-floating mx-1"> 
 	        		<i class="bi bi-google"></i>
