@@ -51,4 +51,25 @@ public class CredentialsValidator implements Validator {
         	errors.rejectValue("password", "required");
         }
     }
+    
+    public void validateReset(Object o, Errors errors) {
+        Credentials credentials = (Credentials) o;
+        String username = credentials.getUsername().trim();
+        String password = credentials.getPassword().trim();
+        String confirmPassword = credentials.getConfirmPassword().trim();
+
+        if (username.isEmpty())
+            errors.rejectValue("username", "required");
+        else if (username.length() < MIN_USERNAME_LENGTH || username.length() > MAX_USERNAME_LENGTH)
+            errors.rejectValue("username", "size");
+
+        if (password.isEmpty())
+            errors.rejectValue("password", "required");
+        else if (password.length() < MIN_PASSWORD_LENGTH || password.length() > MAX_PASSWORD_LENGTH)
+            errors.rejectValue("password", "size");
+
+        if(!password.equals(confirmPassword)) {
+        	errors.rejectValue("password", "required");
+        }
+    }
 }

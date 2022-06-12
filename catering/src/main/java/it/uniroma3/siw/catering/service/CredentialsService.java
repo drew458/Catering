@@ -54,6 +54,18 @@ public class CredentialsService {
     }
     
     @Transactional
+    public Credentials updatePassword(Credentials credentials, Long id) {
+		Credentials toUpdateCredentials = credentialsRepository.findById(id).get();
+    	toUpdateCredentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
+    	credentialsRepository.save(toUpdateCredentials);
+    	return toUpdateCredentials;
+    }
+    
+    public String encodePassword(String password) {
+    	return this.passwordEncoder.encode(password);
+    }
+    
+    @Transactional
     public String getRoleAuthenticated() {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.getCredentials(userDetails.getUsername());

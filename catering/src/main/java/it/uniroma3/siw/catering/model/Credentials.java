@@ -24,9 +24,12 @@ public class Credentials {
 
 	@Column(nullable = false)
 	private String password;
-
+	
 	@Transient
 	private String confirmPassword;
+	
+	@Transient
+	private String oldPassword;
 	
 	@Column(nullable = false)
 	private String role;
@@ -64,6 +67,14 @@ public class Credentials {
 
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 
 	public String getRole() {

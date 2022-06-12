@@ -3,6 +3,7 @@ package it.uniroma3.siw.catering.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -49,7 +50,7 @@ public class AuthenticationController {
 	}
 
 	@GetMapping("/login") 
-	public String showLoginForm (Model model) {		
+	public String showLoginForm(Model model) {		
 		return "loginForm";
 	}
 
@@ -59,7 +60,13 @@ public class AuthenticationController {
 	}
 	
 	@GetMapping("/resetPassword")
-	public String showResetPasswordForm (Model model) {
+	public String showResetPasswordForm(Model model) {
+		model.addAttribute("credentials", new Credentials());
+		return "resetPasswordForm";
+	}
+	
+	@GetMapping("/changePassword")
+	public String showChangePasswordForm(Model model) {
 		model.addAttribute("credentials", new Credentials());
 		return "resetPasswordForm";
 	}
@@ -124,24 +131,30 @@ public class AuthenticationController {
 			// this also stores the User, thanks to Cascade.ALL policy
 			credentials.setUser(user);
 			credentialsService.saveCredentials(credentials);
-			return "registrationSuccessful";
+			model.addAttribute("messageEN", "Registration successful!");
+			model.addAttribute("messageIT", "Registrazione effettuata con successo!");
+			return "operationSuccessful";
 		}
 		return "registerUser";
 	}
 	
 	@PostMapping("/resetPassword")
-	public String resetPassword(@ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult) {
+	public String resetPassword(@ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult,
+			Model model) {
 		// validate credentials fields
-		this.credentialsValidator.validate(credentials, credentialsBindingResult);
+		this.credentialsValidator.validateReset(credentials, credentialsBindingResult);
 
 		// if it hasn't invalid contents, store the Credentials into the DB
 		if(!credentialsBindingResult.hasErrors()) {
 			// get the user and store the credentials;
 			// this also stores the User, thanks to Cascade.ALL policy
 			try {
-				credentials.setUser(credentialsService.getCredentials(credentials.getUsername()).getUser());
-				credentialsService.saveCredentials(credentials);
-				return "resetPasswordSuccessful";
+				Credentials oldCredentials = credentialsService.getCredentials(credentials.getUsername());
+				credentials.setUser(oldCredentials.getUser());
+				credentialsService.updatePassword(credentials, oldCredentials.getId());
+				model.addAttribute("messageEN", "Password reset successful!");
+				model.addAttribute("messageIT", "Reset della password effettuato correttamente!");
+				return "operationSuccessful";
 			}
 			// user not found
 			catch(Exception e) {
@@ -149,5 +162,27 @@ public class AuthenticationController {
 			}
 		}
 		return "resetPasswordForm";
+	}
+	
+	@PostMapping("/changePassword")
+	public String changePassword(@ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult, 
+			Model model) {
+		// validate credentials fields
+		this.credentialsValidator.validateReset(credentials, credentialsBindingResult);
+		
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		// if it hasn't invalid contents, store the Credentials into the DB
+		if(!credentialsBindingResult.hasErrors() && 
+				credentialsService.encodePassword(credentials.getOldPassword()).equals(userDetails.getPassword())) {
+			// get the user and store the credentials;
+			// this also stores the User, thanks to Cascade.ALL policy
+			credentials.setUser(credentialsService.getCredentials(userDetails.getUsername()).getUser());
+			credentialsService.saveCredentials(credentials);
+			model.addAttribute("messageEN", "Password successfully changed!");
+			model.addAttribute("messageIT", "Password cambiata correttamente!");
+			return "operationSuccessful";
+		}
+		return "changePasswordForm";
 	}
 }
