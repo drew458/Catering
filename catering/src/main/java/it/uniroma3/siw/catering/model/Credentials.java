@@ -14,6 +14,7 @@ public class Credentials {
 
 	public static final String DEFAULT_ROLE = "DEFAULT";
 	public static final String ADMIN_ROLE = "ADMIN";
+	public static final String MAGIC_WORD = "SIW";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +31,9 @@ public class Credentials {
 	
 	@Transient
 	private String oldPassword;
+	
+	@Transient
+	private String magicWord;
 	
 	@Column(nullable = false)
 	private String role;
@@ -75,6 +79,14 @@ public class Credentials {
 
 	public void setOldPassword(String oldPassword) {
 		this.oldPassword = oldPassword;
+	}
+
+	public String getMagicWord() {
+		return magicWord;
+	}
+
+	public void setMagicWord(String magicWord) {
+		this.magicWord = magicWord;
 	}
 
 	public String getRole() {
