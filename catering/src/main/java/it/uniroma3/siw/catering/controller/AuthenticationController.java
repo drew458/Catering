@@ -3,7 +3,6 @@ package it.uniroma3.siw.catering.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -68,7 +67,7 @@ public class AuthenticationController {
 	@GetMapping("/changePassword")
 	public String showChangePasswordForm(Model model) {
 		model.addAttribute("credentials", new Credentials());
-		return "resetPasswordForm";
+		return "changePasswordForm";
 	}
 	
 	@GetMapping("/default")
