@@ -32,13 +32,14 @@ public class BuffetController {
 	
 	@GetMapping("/addBuffet")
 	public String addBuffet(Model model) {
-		return "addBuffetForm";
+		model.addAttribute("buffet", new Buffet());
+		return "admin/addBuffetForm";
 	}
 	
 	@PostMapping("/addBuffetForm")
 	public String addBuffetForm(@ModelAttribute("buffet") Buffet buffet, BindingResult buffetBindingResult) {
 		//TODO: add validation
 		buffetService.save(buffet);
-		return "addSuccessful";
+		return "operationSuccessful";
 	}
 }

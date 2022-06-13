@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.catering.controller.validator.ChefValidator;
 import it.uniroma3.siw.catering.model.Chef;
 import it.uniroma3.siw.catering.service.ChefService;
 
@@ -16,7 +17,10 @@ import it.uniroma3.siw.catering.service.ChefService;
 public class ChefController {
 
 	@Autowired
-	ChefService chefService;
+	private ChefService chefService;
+	
+	@Autowired
+	private ChefValidator chefValidator;
 	
 	@GetMapping("/chefList")
 	public String getChefList(Model model) {
@@ -30,15 +34,24 @@ public class ChefController {
     	return "chef";
     }
 	
-	@PostMapping("/addChef")
+	@GetMapping("/addChef")
 	public String addChef(Model model) {
-		return "addChefForm";
+		model.addAttribute("chef", new Chef());
+		return "admin/addChefForm";
 	}
 	
 	@PostMapping("/addChefForm")
-	public String addChefForm(@ModelAttribute("chef") Chef chef, BindingResult chefBindingResult) {
-		//TODO: add validation
-		chefService.save(chef);
-		return "addSuccessful";
+	public String addChefForm(@ModelAttribute("chef") Chef chef, BindingResult chefBindingResult, Model model) {
+
+		this.chefValidator.validate(chef, chefBindingResult);
+		
+		if(!chefBindingResult.hasErrors()) {
+			chefService.save(chef);
+			model.addAttribute("messageEN", "Chef correctly added!");
+			model.addAttribute("messageIT", "Chef aggiunto con successo!");
+			return "operationSuccessful";
+		}
+		
+		return "admin/addChefForm";
 	}
 }

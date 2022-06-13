@@ -33,13 +33,13 @@ public class PiattoController {
 	@GetMapping("/addDish")
 	public String addDish(Model model) {
 		model.addAttribute("piatto", new Piatto());
-		return "addDishForm";
+		return "admin/addDishForm";
 	}
 	
 	@PostMapping("/addDishForm")
 	public String addDishForm(@ModelAttribute("piatto") Piatto piatto, BindingResult piattoBindingResult) {
 		//TODO: add validation
 		piattoService.save(piatto);		
-		return "addSuccessful";
+		return "operationSuccessful";
 	}
 }

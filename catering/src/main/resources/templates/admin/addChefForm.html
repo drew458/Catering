@@ -15,9 +15,9 @@
 			<div class="input-group mb-4">
 			 	<span th:text="#{register.nameSurname}" class="input-group-text">First and last name</span>
 			 	<input type="text" aria-label="Chef first name" th:placeholder="#{register.firstName}" class="form-control"
-			 		th:field="${chef.nome}" autofocus />
+			 		th:field="${chef.nome}" autofocus required />
 			 	<input type="text" aria-label="Chef last name" th:placeholder="#{register.lastName}"
-			 		th:field="${chef.cognome}" class="form-control"/>
+			 		th:field="${chef.cognome}" class="form-control" required/>
 			</div>
 			
             <div class="form-floating mb-4">
