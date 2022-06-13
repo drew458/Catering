@@ -9,9 +9,10 @@
 	
 	
     <div class="container text-center mt-4">
-    
-    	<h1 class="inline-block" th:text="#{index.welcome}">Benvenuto</h1>
-		<h3 class="inline-block" th:text="${user.nome}"> </h3>
+    	<div>
+  			<span th:text="#{adminHome.header}" class="h2">Benvenuto come Admin</span>
+    		<span th:text="${user.nome}" class="h2">Mario</span>
+  		</div>
 		
 		<div class="mt-3">
 			<a th:href="@{/addChef}" th:text="#{adminHome.addChef}">Aggiungi uno chef</a>
