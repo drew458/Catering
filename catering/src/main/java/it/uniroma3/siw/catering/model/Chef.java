@@ -22,9 +22,7 @@ public class Chef {
 	
 	@Column(nullable = false)
 	private String cognome;
-	
 	private String nazionalita;
-	
 	private String imageUrl;
 	
 	/**

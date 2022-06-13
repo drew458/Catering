@@ -50,7 +50,6 @@ public class ChefController {
 	
 	@PostMapping("/addChefForm")
 	public String addChefForm(@ModelAttribute("chef") Chef chef, BindingResult chefBindingResult, Model model) {
-
 		this.chefValidator.validate(chef, chefBindingResult);
 		
 		if(!chefBindingResult.hasErrors()) {

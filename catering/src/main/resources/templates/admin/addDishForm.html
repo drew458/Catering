@@ -24,6 +24,12 @@
             	<label th:text="#{addBuffet.description}" for="piattoDescrizione">Descrizione</label>
             </div>
             
+            <div class="form-floating mb-4">
+            	<input type="text" id="dishImageUrl" class="form-control" th:placeholder="#{addChef.imageUrl}"
+                	th:field="${piatto.imageUrl}" />
+            	<label th:text="#{addChef.imageUrl}" for="dishImageUrl">URL immagine</label>
+            </div>
+            
             <!-- TODO: aggiunta ingredienti -->
             
             <!-- Submit button -->

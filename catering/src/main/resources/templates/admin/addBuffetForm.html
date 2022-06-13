@@ -24,6 +24,12 @@
             	<label th:text="#{addBuffet.description}" for="buffetDescrizione">Descrizione</label>
             </div>
             
+            <div class="form-floating mb-4">
+            	<input type="text" id="buffetImageUrl" class="form-control" th:placeholder="#{addChef.imageUrl}"
+                	th:field="${buffet.imageUrl}" />
+            	<label th:text="#{addChef.imageUrl}" for="buffetImageUrl">URL immagine</label>
+            </div>
+            
             <!-- TODO: aggiunta chef preparatore -->
             
             <!-- Submit button -->

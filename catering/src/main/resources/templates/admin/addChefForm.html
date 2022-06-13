@@ -26,7 +26,11 @@
             	<label th:text="#{addChef.originCountry}" for="chefNazionalita">Nazionalità</label>
             </div>
             
-             <!-- TODO: aggiunta URL immagine -->
+            <div class="form-floating mb-4">
+            	<input type="text" id="chefImageUrl" class="form-control" th:placeholder="#{addChef.imageUrl}"
+                	th:field="${chef.imageUrl}" />
+            	<label th:text="#{addChef.imageUrl}" for="chefImageUrl">URL immagine</label>
+            </div>
             
              <!-- TODO: aggiunta buffet proposti -->
             
