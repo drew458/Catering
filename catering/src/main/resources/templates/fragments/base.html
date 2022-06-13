@@ -48,10 +48,21 @@
                     <button type="button" class="btn btn-warning" onclick='window.location.href="/register"'
                     	th:text="#{index.register}">Sign up</button>
                 </div>
-				<div class="dropdown text-end" sec:authorize="isAuthenticated()">
-	                <a class="d-block text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="true">
-	                    <span sec:authentication="name"></span>
-	                </a>
+				<div class="dropdown text-end" sec:authorize="isAuthenticated()">                   
+                	<a th:if="${#authentication.getPrincipal().getClass() == 
+                			T(org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser)}" 
+            			class="d-block text-decoration-none dropdown-toggle" 
+            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown">
+                		<span th:text="${#authentication.getPrincipal().getAttributes().given_name}"></span>
+                	</a>			
+                
+                	<a th:if="${#authentication.getPrincipal().getClass() == 
+                			T(org.springframework.security.core.userdetails.User)}" 
+            			class="d-block text-decoration-none dropdown-toggle" 
+                		id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown">
+                		<span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+                	</a>	                    
+	                
 	                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser" 
 	                	style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);"
 	                    data-popper-placement="bottom-end">
@@ -63,7 +74,7 @@
 	                        <hr class="dropdwown-divider">
 	                    </li>
 	                    <li>
-	                        <a class="dropdown-item" href="/logout">Logout</a>
+	                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
 	                    </li>
 	                
 	                </ul>
