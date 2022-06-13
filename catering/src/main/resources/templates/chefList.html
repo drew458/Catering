@@ -7,44 +7,38 @@
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->
 
-	<main class="my-5">
-		<div class="container">
-			<!-- <section>
-		    	<div id="intro" class="p-5 text-center bg-light shadow-5 rounded-5 mb-5">
-		      		<h1 class="mb-3 h2">Learn Bootstrap 5 with MDB</h1>
-		      		<p class="mb-3">Best and free guide of responsive web design</p>
-		      		<a class="btn btn-primary m-2" href="https://www.youtube.com/watch?v=c9B4TPnak1A" role="button" rel="nofollow"
-		        		target="_blank">Start tutorial />
-		      		<a class="btn btn-primary m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank"
-		        		role="button">Download MDB UI KIT</a>
-		    	</div>
-		 	</section> -->
-	
-	     	<section class="text-center">
-		    	<h3 th:text="#{chefList.header}" class="mb-5">Chefs</h3>
-		          
-		      	<ul>
-		      		<li th:each="chef : ${chefs}">
-		      			<div class="col-lg-4 col-md-6 mb-4">
-				        	<div class="card">
-				          		<div class="card-img-top">
-				          			<img src="'/static/' + ${chef.imageUrl}" class="img-fluid" />
+	<div class="container my-5">
+     	<div class="text-center">
+	    	<h3 th:text="#{chefList.header}" class="mb-5">Chefs</h3>
+	    	
+	    	<div class="container mt-4">
+	    		<div class="row">
+	    			<div th:each="chef : ${chefs}" class="col-lg-4 col-md-6 mb-4">
+			        	<div class="card">
+			          		<div class="card-img-top">
+			          			<img src="${chef.imageUrl}" class="img-fluid" />
+			          		</div>
+				          	<div class="card-body">
+				          		<div class="text-center mt-2">
+				          			<span th:text="${chef.nome}" class="h5 card-title">Nome</span>
+				            		<span th:text="${chef.cognome}" class="h5 card-title">Cognome</span>
 				          		</div>
-					          	<div class="card-body">
-					            	<h5 th:text="${chef.nome}" class="card-title">Chef name</h5>
-					            	<span th:text="#{chefList.originCountry} " class="card-text">Origin country</span>
-					            	<span th:text="${chef.nazionalita}" class="card-text">Italian</span>
-					            	<a th:text="#{chefList.seeMore}" 
-					            		th:href="@{'/chef' + '/' + ${chef.id}}" class="btn btn-primary">See more</a>
-					          	</div>
-			        		</div>
-      					</div>
-		      		</li>          	
-		      	</ul>
-	      	</section>      
-	    </div>
-	</main>
-    
+				          		<div class="text-center mt-1">
+				          			<span th:text="#{chefList.originCountry} " class="card-text">Origin country</span>
+				            		<span th:text="${chef.nazionalita}" class="card-text">Italian</span>
+				          		</div>         						            	
+				            	<div class="text-center mt-2">
+				            		<a th:text="#{chefList.seeMore}" 
+				            		th:href="@{'/chef' + '/' + ${chef.id}}" class="btn btn-primary">See more</a>
+				            	</div>
+				            	
+				          	</div>
+		        		</div>
+  					</div>		    		
+	    		</div>
+	    	</div>  
+    	</div>    
+	</div>    
 	
 	<!-- Bootstrap Bundle with Popper -->
 	<script th:replace="fragments/base.html :: bootstrapJS" />

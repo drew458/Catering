@@ -16,25 +16,43 @@
 	<!-- START Navbar -->
 	<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/default}">Catering</a>
+			<!-- if the user logged in via email and password -->
+			<a th:if="${#authentication.getPrincipal().getClass() == 
+                			T(org.springframework.security.core.userdetails.User)}" 
+                class="navbar-brand" th:href="@{/default}">Catering</a>
+            <!-- if the user logged in via OAuth2 -->
+            <a th:unless="${#authentication.getPrincipal().getClass() == 
+                			T(org.springframework.security.core.userdetails.User)}"
+               class="navbar-brand" th:href="@{/oauthDefault}">Catering</a>  
+              
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
 					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
+					<!-- if the user logged in via email and password -->
+					<li th:if="${#authentication.getPrincipal().getClass() == 
+                			T(org.springframework.security.core.userdetails.User)}"
+                		class="nav-item">
 						<a class="nav-link active" aria-current="page" th:href="@{/default}">Home</a>
-					 </li>
-					 <li class="nav-item">
+					</li>
+					<!-- if the user logged in via OAuth2 -->
+					<li th:unless="${#authentication.getPrincipal().getClass() == 
+                			T(org.springframework.security.core.userdetails.User)}"
+                		class="nav-item">
+                		<a class="nav-link active" aria-current="page" th:href="@{/oauthDefault}">Home</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" th:text="#{navbar.chef}" th:href="@{/chefList}">Chef</a>
-					 </li>
-					 <li class="nav-item">
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" th:text="#{navbar.buffet}" th:href="@{/buffetList}">Buffet</a>
-					 </li>
-					 <li class="nav-item">
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" th:text="#{navbar.dishes}" th:href="@{/dishList}">Piatti</a>
-					 </li>					 	
+					</li>					 	
 				</ul>
 				<form sec:authorize="isAuthenticated()" class="d-flex" role="search">
 				 	<input class="form-control me-2" type="search" th:placeholder="#{navbar.search}" aria-label="Search">
