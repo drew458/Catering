@@ -40,9 +40,16 @@ public class BuffetController {
 		return "admin/addBuffetForm";
 	}
 	
+	@GetMapping("/deleteBuffet/{id}")
+	public String deleteBuffet(@PathVariable("id") Long id, Model model){
+		this.buffetService.deleteById(id);
+		model.addAttribute("messageEN", "Buffet deleted successfully");
+		model.addAttribute("messageIT", "Buffet eliminato correttamente");
+		return "operationSuccessful";
+	}
+	
 	@PostMapping("/addBuffetForm")
 	public String addBuffetForm(@ModelAttribute("buffet") Buffet buffet, BindingResult buffetBindingResult, Model model) {
-		
 		this.buffetValidator.validate(buffet, buffetBindingResult);
 		
 		if(!buffetBindingResult.hasErrors()) {

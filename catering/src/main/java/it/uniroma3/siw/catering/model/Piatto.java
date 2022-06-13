@@ -17,11 +17,11 @@ public class Piatto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String nome;
-	
 	private String descrizione;
+	private String imageUrl;
 	
 	/**
 	 * La strategia di fetch è EAGER perche insieme al buffet si vogliono sempre vedere i piatti che lo compongono
@@ -52,6 +52,14 @@ public class Piatto {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public List<Ingrediente> getIngredienti() {

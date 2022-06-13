@@ -19,6 +19,7 @@ public class Buffet {
 	private Long id;
 	private String nome;
 	private String descrizione;
+	private String imageUrl;
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	private Chef chefPreparatore;
@@ -52,6 +53,14 @@ public class Buffet {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public Chef getChefPreparatore() {

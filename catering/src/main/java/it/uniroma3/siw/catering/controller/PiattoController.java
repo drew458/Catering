@@ -24,7 +24,7 @@ public class PiattoController {
 	
 	@GetMapping("/dishList")
 	public String getBuffetList(Model model) {
-		model.addAttribute("dishes", this.piattoService.findAll());
+		model.addAttribute("piatti", this.piattoService.findAll());
 		return "dishList";
 	}
 	
@@ -40,9 +40,16 @@ public class PiattoController {
 		return "admin/addDishForm";
 	}
 	
+	@GetMapping("/deleteDish/{id}")
+	public String deleteBuffet(@PathVariable("id") Long id, Model model){
+		this.piattoService.deleteById(id);
+		model.addAttribute("messageEN", "Dish deleted successfully");
+		model.addAttribute("messageIT", "Piatto eliminato correttamente");
+		return "operationSuccessful";
+	}
+	
 	@PostMapping("/addDishForm")
 	public String addDishForm(@ModelAttribute("piatto") Piatto piatto, BindingResult piattoBindingResult, Model model) {
-		
 		this.piattoValidator.validate(piatto, piattoBindingResult);
 		
 		if(!piattoBindingResult.hasErrors()) {

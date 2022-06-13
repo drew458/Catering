@@ -15,15 +15,29 @@
 	    		<div class="row">
 	    			<div th:each="piatto : ${piatti}" class="col-lg-4 col-md-6 mb-4">
 			    		<div class="card">
-			          		<div class="card-img-top">
+			          		<div th:if="${piatto.imageUrl}" class="card-img-top">
 			          			<img src="'${piatto.imageUrl}" class="img-fluid" />
 			          		</div>
 				          	<div class="card-body">
 				            	<h5 th:text="${piatto.nome}" class="card-title">Dish name</h5>
 				            	<div class="text-center mt-1">
 				            		<span th:text="${piatto.descrizione}" class="card-text">Description</span>
-				            	</div>				            	
-				            	<div class="text-center mt-2">
+				            	</div>	
+				            	
+				            	<div sec:authorize="hasAuthority('ADMIN')" class="container text-center">
+			            			<div class="row mt-4">
+			            				<div class="col-lg-6 col-md-6 mb-4">
+			            					<a th:text="#{chefList.seeMore}" 
+			            						th:href="@{'/dish' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
+			            				</div>
+			            				<div class="col-lg-6 col-md-6 mb-4">
+			            					<a th:text="#{adminHome.delete}" 
+						            			th:href="@{'/deleteDish' + '/' + ${piatto.id}}" class="btn btn-danger">Delete</a>
+			            				</div>
+			            			</div>
+				            	</div>
+				            				            	
+				            	<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
 				            		<a th:text="#{chefList.seeMore}" 
 				            			th:href="@{'/dish' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
 				            	</div>				            	

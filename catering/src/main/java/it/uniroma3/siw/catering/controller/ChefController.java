@@ -40,6 +40,14 @@ public class ChefController {
 		return "admin/addChefForm";
 	}
 	
+	@GetMapping("/deleteChef/{id}")
+	public String deleteChef(@PathVariable("id") Long id, Model model){
+		this.chefService.deleteById(id);
+		model.addAttribute("messageEN", "Chef deleted successfully");
+		model.addAttribute("messageIT", "Chef eliminato correttamente");
+		return "operationSuccessful";
+	}
+	
 	@PostMapping("/addChefForm")
 	public String addChefForm(@ModelAttribute("chef") Chef chef, BindingResult chefBindingResult, Model model) {
 
