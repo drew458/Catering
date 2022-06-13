@@ -1,4 +1,4 @@
-package it.uniroma3.siw.catering.controller;
+package it.uniroma3.siw.catering;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

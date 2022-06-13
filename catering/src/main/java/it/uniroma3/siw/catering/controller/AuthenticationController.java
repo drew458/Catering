@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -87,40 +88,48 @@ public class AuthenticationController {
 		}
 		return "index";
 	}
-
+	
 	@GetMapping("/oauthDefault")
 	public String defaultAfterOAuthLogin(Model model, OAuth2AuthenticationToken authentication) {		
-		// credentials are null, user got logged in via OAuth 2
-		// get the client corresponding to the current user token
-		OAuth2AuthorizedClient client = authorizedClientService
-				.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
+		// User got logged in via OAuth 2
 		
-		// send a request to the client's user info endpoint and retrieve the userAttributes Map
-		String userInfoEndpointUri = client.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUri();
-		
-		if (!userInfoEndpointUri.isEmpty()) {
-		    RestTemplate restTemplate = new RestTemplate();
-		    HttpHeaders headers = new HttpHeaders();
-		    headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + client.getAccessToken().getTokenValue());
-		    HttpEntity<String> entity = new HttpEntity<>("", headers);
-		    ResponseEntity<Map> response = restTemplate.exchange(userInfoEndpointUri, HttpMethod.GET, entity, Map.class);
-		    Map userAttributes = response.getBody();
-		    Credentials userCredentials = credentialsService.getCredentials((String) userAttributes.get("email"));
+		OAuth2User oAuth2User = authentication.getPrincipal();		
+		System.out.println(authentication.getPrincipal().getClass());
+		Map<String,Object> attributes = oAuth2User.getAttributes();
+		if(authentication.getAuthorizedClientRegistrationId().equals("google")) {
+			Credentials userCredentials = credentialsService.getCredentials((String) attributes.get("email"));
 		    if(userCredentials != null) {
 		    	model.addAttribute("user", userCredentials.getUser());
 		    }
 		    else {
 		    	Credentials oauthCredentials = new Credentials();
 			    User oauthUser = new User();
-			    oauthUser.setNome((String) userAttributes.get("name"));
+			    oauthUser.setNome((String) attributes.get("name"));
 			    oauthCredentials.setUser(oauthUser);
-			    oauthCredentials.setUsername((String) userAttributes.get("email"));
+			    oauthCredentials.setUsername((String) attributes.get("email"));
 			    credentialsService.saveCredentials(oauthCredentials, false);
 			    model.addAttribute("user", oauthUser);
-		    }			    
-		}			
+		    }
+		}
+		if(authentication.getAuthorizedClientRegistrationId().equals("github")) {
+			Credentials userCredentials = credentialsService.getCredentials((String) attributes.get("login"));
+		    if(userCredentials != null) {
+		    	model.addAttribute("user", userCredentials.getUser());
+		    }
+		    else {
+		    	Credentials oauthCredentials = new Credentials();
+			    User oauthUser = new User();
+			    String userName= (String) attributes.get("login");
+			    oauthUser.setNome(userName);
+			    oauthCredentials.setUser(oauthUser);
+			    oauthCredentials.setUsername(userName);
+			    credentialsService.saveCredentials(oauthCredentials, false);
+			    model.addAttribute("user", oauthUser);
+		    }
+		}
+		
 		return "index";
-	}		
+	}
 
 	@PostMapping("/register")
 	public String registerUser(@ModelAttribute("user") User user, BindingResult userBindingResult,

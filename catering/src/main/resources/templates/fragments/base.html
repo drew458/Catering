@@ -48,14 +48,24 @@
                     <button type="button" class="btn btn-warning" onclick='window.location.href="/register"'
                     	th:text="#{index.register}">Sign up</button>
                 </div>
-				<div class="dropdown text-end" sec:authorize="isAuthenticated()">                   
+				<div class="dropdown text-end" sec:authorize="isAuthenticated()">
+					<!-- Login via Google OAuth2 -->                   
                 	<a th:if="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser)}" 
             			class="d-block text-decoration-none dropdown-toggle" 
             			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown">
-                		<span th:text="${#authentication.getPrincipal().getAttributes().given_name}"></span>
-                	</a>			
+                		<span th:text="${#authentication.getPrincipal().getAttributes().name}"></span>
+                	</a>
+                	
+                	<!-- Login via Github OAuth2 -->
+                	<a th:if="${#authentication.getPrincipal().getClass() == 
+                			T(org.springframework.security.oauth2.core.user.DefaultOAuth2User)}" 
+            			class="d-block text-decoration-none dropdown-toggle" 
+            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown">
+                		<span th:text="${#authentication.getPrincipal().getAttributes().login}"></span>
+                	</a>          		
                 
+                	<!-- Login via email and password -->
                 	<a th:if="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.core.userdetails.User)}" 
             			class="d-block text-decoration-none dropdown-toggle" 
