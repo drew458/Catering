@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.catering.controller.validator.PiattoValidator;
 import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.service.PiattoService;
 
@@ -16,7 +17,10 @@ import it.uniroma3.siw.catering.service.PiattoService;
 public class PiattoController {
 
 	@Autowired
-	PiattoService piattoService;
+	private PiattoService piattoService;
+	
+	@Autowired
+	private PiattoValidator piattoValidator;
 	
 	@GetMapping("/dishList")
 	public String getBuffetList(Model model) {
@@ -37,9 +41,17 @@ public class PiattoController {
 	}
 	
 	@PostMapping("/addDishForm")
-	public String addDishForm(@ModelAttribute("piatto") Piatto piatto, BindingResult piattoBindingResult) {
-		//TODO: add validation
-		piattoService.save(piatto);		
-		return "operationSuccessful";
+	public String addDishForm(@ModelAttribute("piatto") Piatto piatto, BindingResult piattoBindingResult, Model model) {
+		
+		this.piattoValidator.validate(piatto, piattoBindingResult);
+		
+		if(!piattoBindingResult.hasErrors()) {
+			piattoService.save(piatto);
+			model.addAttribute("messageEN", "Dish correctly added!");
+			model.addAttribute("messageIT", "Piatto aggiunto con successo!");
+			return "operationSuccessful";
+		}
+		
+		return "admin/addDishForm";
 	}
 }
