@@ -15,7 +15,7 @@
 	    		<div class="row">
 	    			<div th:each="chef : ${chefs}" class="col-lg-4 col-md-6 mb-4">
 			        	<div class="card">
-			          		<div th:if="${chef.imageUrl}" class="card-img-top">
+			          		<div th:if="${!chef.imageUrl.isEmpty()}" class="card-img-top">
 			          			<img src="${chef.imageUrl}" class="img-fluid" />
 			          		</div>
 				          	<div class="card-body">
@@ -23,7 +23,7 @@
 				          			<span th:text="${chef.nome}" class="h5 card-title">Nome</span>
 				            		<span th:text="${chef.cognome}" class="h5 card-title">Cognome</span>
 				          		</div>
-				          		<div th:if="${chef.nazionalita}" class="text-center mt-1">
+				          		<div th:if="${!chef.nazionalita.isEmpty()}" class="text-center mt-1">
 				          			<span th:text="#{chefList.originCountry} " class="card-text">Origin country</span>
 				            		<span th:text="${chef.nazionalita}" class="card-text">Italian</span>
 				          		</div>

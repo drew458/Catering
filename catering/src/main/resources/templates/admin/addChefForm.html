@@ -32,10 +32,16 @@
             	<label th:text="#{addChef.imageUrl}" for="chefImageUrl">URL immagine</label>
             </div>
             
-             <!-- TODO: aggiunta buffet proposti -->
+            <div class="form-group mb-6">
+				<label for="buffet" th:text="#{addChef.selectOfferedBuffet}">Seleziona un buffet proposto</label>
+				<select class="form-select" th:field="${chef.buffetProposti}">
+					<option value="true" th:text="#{addChef.select}" >Seleziona..</option>
+					<option th:each="buffet : ${buffetList}" th:value="${buffet.id}" th:text="${buffet.nome}">Nome buffet</option>
+				</select>
+			</div>
             
             <!-- Submit button -->
-            <button th:text="#{addChef.addButton}" type="submit" class="btn btn-primary btn-block mb-4">Aggiungi chef</button>
+            <button th:text="#{addChef.addButton}" type="submit" class="btn btn-primary btn-block mt-4 mb-4">Aggiungi chef</button>
 		</form>
 	</div>
 </body>
