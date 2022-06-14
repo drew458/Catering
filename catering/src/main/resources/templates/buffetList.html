@@ -15,7 +15,7 @@
 	    		<div class="row">
 	    			<div class="col-lg-4 col-md-6 mb-4" th:each="buffet : ${buffets}">
 			        	<div class="card">
-			          		<div th:if="${buffet.imageUrl}" class="card-img-top">
+			          		<div th:if="${!buffet.imageUrl.isEmpty()}" class="card-img-top">
 			          			<img src="${buffet.imageUrl}" class="img-fluid" />
 			          		</div>
 				          	<div class="card-body">

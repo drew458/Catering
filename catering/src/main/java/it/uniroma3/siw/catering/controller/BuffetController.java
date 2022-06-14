@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import it.uniroma3.siw.catering.controller.validator.BuffetValidator;
 import it.uniroma3.siw.catering.model.Buffet;
 import it.uniroma3.siw.catering.service.BuffetService;
+import it.uniroma3.siw.catering.service.ChefService;
 
 @Controller
 public class BuffetController {
 
 	@Autowired
-	BuffetService buffetService;
+	private BuffetService buffetService;
+	
+	@Autowired
+	private ChefService chefService;
 	
 	@Autowired
 	private BuffetValidator buffetValidator;
@@ -37,6 +41,7 @@ public class BuffetController {
 	@GetMapping("/addBuffet")
 	public String addBuffet(Model model) {
 		model.addAttribute("buffet", new Buffet());
+		model.addAttribute("chefList", this.chefService.findAll());
 		return "admin/addBuffetForm";
 	}
 	

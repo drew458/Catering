@@ -30,7 +30,13 @@
             	<label th:text="#{addChef.imageUrl}" for="buffetImageUrl">URL immagine</label>
             </div>
             
-            <!-- TODO: aggiunta chef preparatore -->
+           <div class="form-group mb-6">
+				<label for="chef" th:text="#{addBuffet.selectChefAuthor}">Chef preparatore</label>
+				<select class="form-select" th:field="${buffet.chefPreparatore}">
+					<option value="true" th:text="#{addChef.select}" >Seleziona..</option>
+					<option th:each="chef : ${chefList}" th:value="${chef.id}" th:text="${chef.nome + ' ' + chef.cognome}">Nome chef</option>
+				</select>
+			</div>
             
             <!-- Submit button -->
             <button th:text="#{addBuffet.addButton}" type="submit" class="btn btn-primary btn-block mb-4">Aggiungi buffet</button>
