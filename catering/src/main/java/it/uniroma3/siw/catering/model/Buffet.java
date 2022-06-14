@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -21,7 +22,10 @@ public class Buffet {
 	private String descrizione;
 	private String imageUrl;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	/**
+	 * La strategia di fetch è LAZY perche non è detto che si vuole sempre vedere l'autore del buffet
+	 */
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private Chef chefPreparatore;
 	
 	/**

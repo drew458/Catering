@@ -11,6 +11,7 @@
 		<div class="mb-4">
 	    	<h1 th:text="#{adminHome.addChef}">Aggiungi un nuovo chef</h1>
 	    </div>
+		
 		<form th:action="@{/addChefForm}" method="POST">
 			<div class="input-group mb-4">
 			 	<span th:text="#{register.nameSurname}" class="input-group-text">First and last name</span>
@@ -32,8 +33,8 @@
             	<label th:text="#{addChef.imageUrl}" for="chefImageUrl">URL immagine</label>
             </div>
             
-            <div class="form-group mb-6">
-				<label for="buffet" th:text="#{addChef.selectOfferedBuffet}">Seleziona un buffet proposto</label>
+            <div th:if="${!buffetList.isEmpty()}" class="form-group mb-6">
+				<label class="h5" for="buffet" th:text="#{addChef.selectOfferedBuffet}">Seleziona un buffet proposto</label>
 				<select class="form-select" th:field="${chef.buffetProposti}">
 					<option value="true" th:text="#{addChef.select}" >Seleziona..</option>
 					<option th:each="buffet : ${buffetList}" th:value="${buffet.id}" th:text="${buffet.nome}">Nome buffet</option>
@@ -43,6 +44,7 @@
             <!-- Submit button -->
             <button th:text="#{addChef.addButton}" type="submit" class="btn btn-primary btn-block mt-4 mb-4">Aggiungi chef</button>
 		</form>
+		
 	</div>
 </body>
 </html>

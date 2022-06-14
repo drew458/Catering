@@ -7,7 +7,7 @@
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->
 
-	<div class="container my-5">	
+	<div class="container mt-4">	
      	<div class="text-center">
 	    	<h2 th:text="#{buffetList.header}" class="mb-5">Buffets</h2>
 	    	
@@ -15,8 +15,9 @@
 	    		<div class="row">
 	    			<div class="col-lg-4 col-md-6 mb-4" th:each="buffet : ${buffets}">
 			        	<div class="card">
-			          		<div th:if="${!buffet.imageUrl.isEmpty()}" class="card-img-top">
-			          			<img src="${buffet.imageUrl}" class="img-fluid" />
+			          		<div th:if="${!buffet.imageUrl.isEmpty()}" 
+			          			class="card-img-top">
+			          			<img th:src="${buffet.imageUrl}" class="img-fluid" />
 			          		</div>
 				          	<div class="card-body">
 				            	<h5 th:text="${buffet.nome}" class="card-title">Buffet name</h5>

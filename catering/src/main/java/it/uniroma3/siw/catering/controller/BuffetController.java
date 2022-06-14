@@ -58,9 +58,9 @@ public class BuffetController {
 		this.buffetValidator.validate(buffet, buffetBindingResult);
 		
 		if(!buffetBindingResult.hasErrors()) {
-			model.addAttribute("messageEN", "Buffet correctly added!");
-			model.addAttribute("messageIT", "Buffet aggiunto con successo!");
 			buffetService.save(buffet);
+			model.addAttribute("messageEN", "Buffet correctly added!");
+			model.addAttribute("messageIT", "Buffet aggiunto con successo!");			
 			return "operationSuccessful";
 		}
 		

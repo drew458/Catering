@@ -11,6 +11,7 @@
 		<div class="mb-4">
 	    	<h1 th:text="#{adminHome.addBuffet}">Aggiungi un nuovo buffet</h1>
 	    </div>
+		
 		<form th:action="@{/addBuffetForm}" method="POST">
 			<div class="form-floating mb-4">
                 <input type="text" id="buffetNome" class="form-control" th:placeholder="#{addBuffet.name}"
@@ -30,8 +31,9 @@
             	<label th:text="#{addChef.imageUrl}" for="buffetImageUrl">URL immagine</label>
             </div>
             
-           <div class="form-group mb-6">
-				<label for="chef" th:text="#{addBuffet.selectChefAuthor}">Chef preparatore</label>
+            <!-- if chefList is not tested -->
+           <div th:if="${chefList and !chefList.isEmpty()}" class="form-group mb-6">
+				<label class="h5" for="chef" th:text="#{addBuffet.selectChefAuthor}">Chef preparatore</label>
 				<select class="form-select" th:field="${buffet.chefPreparatore}">
 					<option value="true" th:text="#{addChef.select}" >Seleziona..</option>
 					<option th:each="chef : ${chefList}" th:value="${chef.id}" th:text="${chef.nome + ' ' + chef.cognome}">Nome chef</option>
@@ -39,8 +41,9 @@
 			</div>
             
             <!-- Submit button -->
-            <button th:text="#{addBuffet.addButton}" type="submit" class="btn btn-primary btn-block mb-4">Aggiungi buffet</button>
+            <button th:text="#{addBuffet.addButton}" type="submit" class="btn btn-primary btn-block mt-4 mb-4">Aggiungi buffet</button>
 		</form>
+		
 	</div>
 </body>
 </html>

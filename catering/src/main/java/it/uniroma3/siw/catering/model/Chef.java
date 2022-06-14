@@ -2,6 +2,7 @@ package it.uniroma3.siw.catering.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +29,8 @@ public class Chef {
 	/**
 	 * La strategia di fetch è LAZY perche non è detto che si vogliono sempre vedere i buffet proposti dallo chef
 	 */
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+			mappedBy = "chefPreparatore")
 	private List<Buffet> buffetProposti;
 
 	public Long getId() {

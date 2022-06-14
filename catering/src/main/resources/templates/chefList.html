@@ -7,16 +7,16 @@
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->
 
-	<div class="container my-5">
+	<div class="container mt-4">
      	<div class="text-center">
-	    	<h2 th:text="#{chefList.header}" class="mb-5">Chefs</h2>
+	    	<h2 th:text="#{chefList.header}" class="mb-4">Chefs</h2>
 	    	
 	    	<div class="container mt-4">
 	    		<div class="row">
 	    			<div th:each="chef : ${chefs}" class="col-lg-4 col-md-6 mb-4">
 			        	<div class="card">
 			          		<div th:if="${!chef.imageUrl.isEmpty()}" class="card-img-top">
-			          			<img src="${chef.imageUrl}" class="img-fluid" />
+			          			<img th:src="${chef.imageUrl}" class="img-fluid" />
 			          		</div>
 				          	<div class="card-body">
 				          		<div class="text-center mt-2">
