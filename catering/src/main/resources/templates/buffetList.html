@@ -7,47 +7,52 @@
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->
 
-	<div class="container mt-4">	
-     	<div class="text-center">
-	    	<h2 th:text="#{buffetList.header}" class="mb-5">Buffets</h2>
+	<div class="container text-center mt-4">	
+    	<h2 th:text="#{buffetList.header}" class="mb-5">Buffets</h2>
 	    	
-	    	<div class="container mt-4">
-	    		<div class="row">
-	    			<div class="col-lg-4 col-md-6 mb-4" th:each="buffet : ${buffets}">
-			        	<div class="card">
-			          		<div th:if="${!buffet.imageUrl.isEmpty()}" 
-			          			class="card-img-top">
-			          			<img th:src="${buffet.imageUrl}" class="img-fluid" />
-			          		</div>
-				          	<div class="card-body">
-				            	<h5 th:text="${buffet.nome}" class="card-title">Buffet name</h5>
-				            	<div class="text-center mt-1">
-				            		<span th:text="${buffet.descrizione}" class="card-text">Description</span>
-				            	</div>
-				            	
-				            	<div sec:authorize="hasAuthority('ADMIN')" class="container text-center">
-			            			<div class="row mt-4">
-			            				<div class="col-lg-6 col-md-6 mb-4">
-			            					<a th:text="#{chefList.seeMore}" 
-			            						th:href="@{'/buffet' + '/' + ${buffet.id}}" class="btn btn-primary">See more</a>
-			            				</div>
-			            				<div class="col-lg-6 col-md-6 mb-4">
-					            			<a th:text="#{adminHome.delete}" 
-						            			th:href="@{'/deleteBuffet' + '/' + ${buffet.id}}" class="btn btn-danger">Delete</a>
-					            		</div>				            				
-			            			</div>
-				            	</div>
-				            	
-				          		<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
-				          			<a th:text="#{chefList.seeMore}" 
-				            			th:href="@{'/buffet' + '/' + ${buffet.id}}" class="btn btn-primary">See more</a>				          		
-				          		</div>         	
-				          	</div>
-		        		</div>
-	      			</div>	
-	    		</div>
-	    	</div>
-      	</div>
+    	<div th:if="${buffets}" class="container mt-4">
+    		<div class="row">
+    			<div th:each="buffet : ${buffets}" class="col-lg-4 col-md-6 mb-4">
+		        	<div class="card">
+		          		<div th:if="${!buffet.imageUrl.isEmpty()}" 
+		          			class="card-img-top">
+		          			<img th:src="${buffet.imageUrl}" class="img-fluid" />
+		          		</div>
+			          	<div class="card-body">
+			            	<h5 th:text="${buffet.nome}" class="card-title">Buffet name</h5>
+			            	<div class="text-center mt-1">
+			            		<span th:text="${buffet.descrizione}" class="card-text">Description</span>
+			            	</div>
+			            	
+			            	<div sec:authorize="hasAuthority('ADMIN')" class="container text-center">
+		            			<div class="row mt-4">
+		            				<div class="col-lg-6 col-md-6 mb-4">
+		            					<a th:text="#{chefList.seeMore}" 
+		            						th:href="@{'/buffet' + '/' + ${buffet.id}}" class="btn btn-primary">See more</a>
+		            				</div>
+		            				<div class="col-lg-6 col-md-6 mb-4">
+				            			<a th:text="#{adminHome.delete}" 
+					            			th:href="@{'/deleteBuffet' + '/' + ${buffet.id}}" class="btn btn-danger">Delete</a>
+				            		</div>				            				
+		            			</div>
+			            	</div>
+			            	
+			          		<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
+			          			<a th:text="#{chefList.seeMore}" 
+			            			th:href="@{'/buffet' + '/' + ${buffet.id}}" class="btn btn-primary">See more</a>				          		
+			          		</div>         	
+			          	</div>
+	        		</div>
+      			</div>	
+    		</div>
+    	</div>
+    	
+    	<!-- TODO get better -->
+    	<div th:unless="${buffets}">
+    		<p>No buffets here!</p>
+    		<a th:href="@{/addBuffet}" class="btn btn-primary">Add buffet</a>
+    	</div>
+    	
 	</div>
 </body>
 </html>

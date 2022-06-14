@@ -7,51 +7,56 @@
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->
 
-	<div class="container mt-4">
-     	<div class="text-center">
-	    	<h2 th:text="#{chefList.header}" class="mb-4">Chefs</h2>
-	    	
-	    	<div class="container mt-4">
-	    		<div class="row">
-	    			<div th:each="chef : ${chefs}" class="col-lg-4 col-md-6 mb-4">
-			        	<div class="card">
-			          		<div th:if="${!chef.imageUrl.isEmpty()}" class="card-img-top">
-			          			<img th:src="${chef.imageUrl}" class="img-fluid" />
+	<div class="container text-center mt-4">
+    	<h2 th:text="#{chefList.header}" class="mb-4">Chefs</h2>
+    	
+    	<div th:if="${chef}" class="container mt-4">
+    		<div class="row">
+    			<div th:each="chef : ${chefs}" class="col-lg-4 col-md-6 mb-4">
+		        	<div class="card">
+		          		<div th:if="${!chef.imageUrl.isEmpty()}" class="card-img-top">
+		          			<img th:src="${chef.imageUrl}" class="img-fluid" />
+		          		</div>
+			          	<div class="card-body">
+			          		<div class="text-center mt-2">
+			          			<span th:text="${chef.nome}" class="h5 card-title">Nome</span>
+			            		<span th:text="${chef.cognome}" class="h5 card-title">Cognome</span>
 			          		</div>
-				          	<div class="card-body">
-				          		<div class="text-center mt-2">
-				          			<span th:text="${chef.nome}" class="h5 card-title">Nome</span>
-				            		<span th:text="${chef.cognome}" class="h5 card-title">Cognome</span>
-				          		</div>
-				          		<div th:if="${!chef.nazionalita.isEmpty()}" class="text-center mt-1">
-				          			<span th:text="#{chefList.originCountry} " class="card-text">Origin country</span>
-				            		<span th:text="${chef.nazionalita}" class="card-text">Italian</span>
-				          		</div>
-				          		<div sec:authorize="hasAuthority('ADMIN')">
-					          		<div class="container text-center">
-					          			<div class="row mt-4">
-					          				<div class="col-lg-6 col-md-6 mb-4">
-							            		<a th:text="#{chefList.seeMore}" 
-							            			th:href="@{'/chef' + '/' + ${chef.id}}" class="btn btn-primary">See more</a>
-							            	</div>
-							            	<div class="col-lg-6 col-md-6 mb-4">
-							            		<a th:text="#{adminHome.delete}" 
-							            			th:href="@{'/deleteChef' + '/' + ${chef.id}}" class="btn btn-danger">Delete</a>
-							            	</div>
-					          			</div>
-					          		</div>				          			
-				          		</div>         						            	
-				            	
-				            	<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
-				            		<a th:text="#{chefList.seeMore}" 
-				            			th:href="@{'/chef' + '/' + ${chef.id}}" class="btn btn-primary">See more</a>
-				            	</div>				            	
-				          	</div>
-		        		</div>
-  					</div>		    		
-	    		</div>
-	    	</div>  
-    	</div>    
+			          		<div th:if="${!chef.nazionalita.isEmpty()}" class="text-center mt-1">
+			          			<span th:text="#{chefList.originCountry} " class="card-text">Origin country</span>
+			            		<span th:text="${chef.nazionalita}" class="card-text">Italian</span>
+			          		</div>
+			          		<div sec:authorize="hasAuthority('ADMIN')">
+				          		<div class="container text-center">
+				          			<div class="row mt-4">
+				          				<div class="col-lg-6 col-md-6 mb-4">
+						            		<a th:text="#{chefList.seeMore}" 
+						            			th:href="@{'/chef' + '/' + ${chef.id}}" class="btn btn-primary">See more</a>
+						            	</div>
+						            	<div class="col-lg-6 col-md-6 mb-4">
+						            		<a th:text="#{adminHome.delete}" 
+						            			th:href="@{'/deleteChef' + '/' + ${chef.id}}" class="btn btn-danger">Delete</a>
+						            	</div>
+				          			</div>
+				          		</div>				          			
+			          		</div>         						            	
+			            	
+			            	<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
+			            		<a th:text="#{chefList.seeMore}" 
+			            			th:href="@{'/chef' + '/' + ${chef.id}}" class="btn btn-primary">See more</a>
+			            	</div>				            	
+			          	</div>
+	        		</div>
+				</div>		    		
+    		</div>
+    	</div>
+    	
+    	<!-- TODO get better -->
+    	<div th:unless="${chef}">
+			<p>No chefs here!</p>
+    		<a th:href="@{/addChef}" class="btn btn-primary">Add chef</a>
+    	</div>
+    	    
 	</div>    
 </body>
 </html>
