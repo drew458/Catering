@@ -61,9 +61,9 @@ public class ChefController {
 			chefService.save(chef);
 			model.addAttribute("messageEN", "Chef correctly added!");
 			model.addAttribute("messageIT", "Chef aggiunto con successo!");
+			model.addAttribute("objectName", "chef");
 			return "operationSuccessful";
-		}
-		
+		}		
 		return "admin/addChefForm";
 	}
 }

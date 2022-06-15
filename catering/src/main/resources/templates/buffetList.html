@@ -8,9 +8,9 @@
 	<!-- END Navbar -->
 
 	<div class="container text-center mt-4">	
-    	<h2 th:text="#{buffetList.header}" class="mb-5">Buffets</h2>
+    	<h2 th:text="#{buffetList.header}" class="mb-4">Buffets</h2>
 	    	
-    	<div th:if="${buffets}" class="container mt-4">
+    	<div th:if="${!buffets.isEmpty()}" class="container mt-4">
     		<div class="row">
     			<div th:each="buffet : ${buffets}" class="col-lg-4 col-md-6 mb-4">
 		        	<div class="card">
@@ -47,7 +47,7 @@
     		</div>
     	</div>
     	
-    	<div th:unless="${buffets}">
+    	<div th:unless="${!buffets.isEmpty()}">
     		<p th:text="#{buffetList.noBuffetFound}">No buffets here!</p>
     		<a th:text="#{adminHome.addBuffet}" th:href="@{/addBuffet}" class="btn btn-primary">Add buffet</a>
     	</div>

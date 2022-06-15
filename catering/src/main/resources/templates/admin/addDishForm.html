@@ -30,16 +30,16 @@
             	<label th:text="#{addChef.imageUrl}" for="dishImageUrl">URL immagine</label>
             </div>
             
-            <div th:if"${!ingredienti.isEmpty()}" class="form-group mb-6">
+            <div th:if"${!ingredientiList.isEmpty()}" class="form-group mb-6">
 				<label class="h5" for="ingredienti" th:text="#{addDish.selectIngredients}">Ingredienti</label>
 				<select class="form-select" th:field="${piatto.ingredienti}">
 					<option value="true" th:text="#{addChef.select}" >Seleziona..</option>
-					<option th:each="ingredente : ${ingredienti}" th:value="${ingrediente.id}" th:text="${ingrediente.nome}">Nome ingrediente</option>
+					<option th:each="ingredente : ${ingredientiList}" th:value="${ingrediente.id}" th:text="${ingrediente.nome}">Nome ingrediente</option>
 				</select> 
 			</div>
             
             <!-- Submit button -->
-            <button th:text="#{addDish.addButton}" type="submit" class="btn btn-primary btn-block mt-4 mb-4">Aggiungi piatto</button>
+            <button th:text="#{addDish.addButton}" type="submit" class="btn btn-primary btn-block mt-4">Aggiungi piatto</button>
 		</form>
 	</div>
 </body>

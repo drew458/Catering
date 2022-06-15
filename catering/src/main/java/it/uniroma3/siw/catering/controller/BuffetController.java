@@ -60,10 +60,10 @@ public class BuffetController {
 		if(!buffetBindingResult.hasErrors()) {
 			buffetService.save(buffet);
 			model.addAttribute("messageEN", "Buffet correctly added!");
-			model.addAttribute("messageIT", "Buffet aggiunto con successo!");			
+			model.addAttribute("messageIT", "Buffet aggiunto con successo!");
+			model.addAttribute("objectName", "buffet");
 			return "operationSuccessful";
-		}
-		
+		}		
 		return "admin/addBuffetForm";
 	}
 }

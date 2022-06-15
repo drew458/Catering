@@ -31,8 +31,7 @@
             	<label th:text="#{addChef.imageUrl}" for="buffetImageUrl">URL immagine</label>
             </div>
             
-            <!-- if chefList is not tested -->
-           <div th:if="${chefList and !chefList.isEmpty()}" class="form-group mb-6">
+           <div th:if="${!chefList.isEmpty()}" class="form-group mb-6">
 				<label class="h5" for="chef" th:text="#{addBuffet.selectChefAuthor}">Chef preparatore</label>
 				<select class="form-select" th:field="${buffet.chefPreparatore}">
 					<option value="true" th:text="#{addChef.select}" >Seleziona..</option>
@@ -41,7 +40,7 @@
 			</div>
             
             <!-- Submit button -->
-            <button th:text="#{addBuffet.addButton}" type="submit" class="btn btn-primary btn-block mt-4 mb-4">Aggiungi buffet</button>
+            <button th:text="#{addBuffet.addButton}" type="submit" class="btn btn-primary btn-block mt-4">Aggiungi buffet</button>
 		</form>
 		
 	</div>

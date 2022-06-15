@@ -17,6 +17,23 @@
 	      		</button>
 	     	</form>
         </div>
+        
+        <div th:if=${objetName}>
+        	<a th:if="${objetName.equals('chef')}" class="btn btn-primary btn-block mt-4 mb-4" th:text="#{operationSuccessful.addChef}" 
+	        	th:href="@{/addChef}">
+	        	Aggiungi un altro chef
+	        </a>
+	        
+	        <a th:if="${objetName.equals('buffet')}" class="btn btn-primary btn-block mt-4 mb-4" th:text="#{operationSuccessful.addBuffet}" 
+	        	th:href="@{/addBuffet}">
+	        	Aggiungi un altro buffet
+	        </a>
+	        
+	        <a th:if="${objetName.equals('piatto')}" class="btn btn-primary btn-block mt-4 mb-4" th:text="#{operationSuccessful.addDish}" 
+	        	th:href="@{/addDish}">
+	        	Aggiungi un altro piatto
+	        </a>        
+        </div>
     </div> 
 </body>
 </html>

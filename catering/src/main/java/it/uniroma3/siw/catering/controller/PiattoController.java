@@ -41,7 +41,7 @@ public class PiattoController {
 	@GetMapping("/addDish")
 	public String addDish(Model model) {
 		model.addAttribute("piatto", new Piatto());
-		model.addAttribute("ingredienti", this.ingredienteService.findAll());
+		model.addAttribute("ingredientiList", this.ingredienteService.findAll());
 		return "admin/addDishForm";
 	}
 	
@@ -61,9 +61,9 @@ public class PiattoController {
 			piattoService.save(piatto);
 			model.addAttribute("messageEN", "Dish correctly added!");
 			model.addAttribute("messageIT", "Piatto aggiunto con successo!");
+			model.addAttribute("objectName", "piatto");
 			return "operationSuccessful";
-		}
-		
+		}		
 		return "admin/addDishForm";
 	}
 }
