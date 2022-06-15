@@ -18,7 +18,7 @@
 		          			<img th:src="'${piatto.imageUrl}" class="img-fluid" />
 		          		</div>
 			          	<div class="card-body">
-			            	<h5 th:text="${piatto.nome}" class="card-title">Dish name</h5>
+			            	<h5 th:text="${piatto.nome}" class="card-title">Piatto name</h5>
 			            	<div class="text-center mt-1">
 			            		<span th:text="${piatto.descrizione}" class="card-text">Description</span>
 			            	</div>	
@@ -27,7 +27,7 @@
 		            			<div class="row mt-4">
 		            				<div class="col-lg-6 col-md-6 mb-4">
 		            					<a th:text="#{chefList.seeMore}" 
-		            						th:href="@{'/dish' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
+		            						th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
 		            				</div>
 		            				<div class="col-lg-6 col-md-6 mb-4">
 		            					<a th:text="#{adminHome.delete}" 
@@ -38,7 +38,7 @@
 			            				            	
 			            	<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
 			            		<a th:text="#{chefList.seeMore}" 
-			            			th:href="@{'/dish' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
+			            			th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
 			            	</div>				            	
 			          	</div>
 	        		</div>	
@@ -48,7 +48,7 @@
     	
     	<div th:unless="${!piatti.isEmpty()}" sec:authorize="hasAuthority('ADMIN')">
     		<p th:text="#{dishList.noDishFound}">No dishes here!</p>
-    		<a th:text="#{adminHome.addDish}" th:href="@{/admin/addDish}" class="btn btn-primary">Add dish</a>
+    		<a th:text="#{adminHome.addDish}" th:href="@{/admin/addDish}" class="btn btn-primary">Add piatto</a>
     	</div>
     	
     	<div th:unless="${!piatti.isEmpty()}" sec:authorize="hasAuthority('DEFAULT')">

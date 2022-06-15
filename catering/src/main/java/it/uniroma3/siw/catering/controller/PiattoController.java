@@ -32,10 +32,10 @@ public class PiattoController {
 		return "dishList";
 	}
 	
-	@GetMapping("/dish/{id}")
+	@GetMapping("/piatto/{id}")
     public String getDish(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("piatto", this.piattoService.findById(id));
-    	return "dish";
+    	return "piatto";
     }
 	
 	@GetMapping("/admin/addDish")
@@ -48,7 +48,7 @@ public class PiattoController {
 	@GetMapping("/admin/deleteDish/{id}")
 	public String deleteDish(@PathVariable("id") Long id, Model model){
 		this.piattoService.deleteById(id);
-		model.addAttribute("messageEN", "Dish deleted successfully");
+		model.addAttribute("messageEN", "Piatto deleted successfully");
 		model.addAttribute("messageIT", "Piatto eliminato correttamente");
 		return "operationSuccessful";
 	}
@@ -59,7 +59,7 @@ public class PiattoController {
 		
 		if(!piattoBindingResult.hasErrors()) {
 			piattoService.save(piatto);
-			model.addAttribute("messageEN", "Dish correctly added!");
+			model.addAttribute("messageEN", "Piatto correctly added!");
 			model.addAttribute("messageIT", "Piatto aggiunto con successo!");
 			model.addAttribute("objectName", "piatto");
 			return "operationSuccessful";

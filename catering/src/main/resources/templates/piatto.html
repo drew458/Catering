@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{dish.title})">
+<head th:replace="fragments/base.html :: headerfiles(title=#{piatto.title})">
 </head>
 <body>
 	<!-- START Navbar -->
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		
-		<div th:unless="${piatto}" th:text="#{piatto.notExist}">This dish does not exist</div>
+		<div th:unless="${piatto}" th:text="#{piatto.notExist}">This piatto does not exist</div>
 	</div> 
 	
 </body>

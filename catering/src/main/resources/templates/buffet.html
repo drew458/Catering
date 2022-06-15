@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{dish.title})">
+<head th:replace="fragments/base.html :: headerfiles(title=#{piatto.title})">
 </head>
 <body>
 	<!-- START Navbar -->
@@ -37,7 +37,7 @@
 		            			<div class="row mt-4">
 		            				<div class="col-lg-6 col-md-6 mb-4">
 		            					<a th:text="#{buffetList.seeMore}" 
-		            						th:href="@{'/dish' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
+		            						th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
 		            				</div>
 		            				<div class="col-lg-6 col-md-6 mb-4">
 				            			<a th:text="#{adminHome.delete}" 
@@ -48,7 +48,7 @@
 			            	
 			          		<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
 			          			<a th:text="#{buffetList.seeMore}" 
-			            			th:href="@{'/dish' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>				          		
+			            			th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>				          		
 			          		</div>         	
 			          	</div>
 	        		</div>
