@@ -47,11 +47,14 @@
     		</div>
     	</div>
     	
-    	<div th:unless="${!buffets.isEmpty()}">
+    	<div th:unless="${!buffets.isEmpty()}" sec:authorize="hasAuthority('ADMIN')">
     		<p th:text="#{buffetList.noBuffetFound}">No buffets here!</p>
-    		<a th:text="#{adminHome.addBuffet}" th:href="@{/addBuffet}" class="btn btn-primary">Add buffet</a>
+    		<a th:text="#{adminHome.addBuffet}" th:href="@{/admin/addBuffet}" class="btn btn-primary">Add buffet</a>
     	</div>
     	
+    	<div th:unless="${!buffets.isEmpty()}" sec:authorize="hasAuthority('DEFAULT')">
+    		<p th:text="#{buffetList.noBuffetFound}">No buffets here!</p>
+    	</div>
 	</div>
 </body>
 </html>

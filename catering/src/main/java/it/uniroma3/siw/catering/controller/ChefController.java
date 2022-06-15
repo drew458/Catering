@@ -38,7 +38,7 @@ public class ChefController {
     	return "chef";
     }
 	
-	@GetMapping("/addChef")
+	@GetMapping("/admin/addChef")
 	public String addChef(Model model) {
 		model.addAttribute("chef", new Chef());
 		model.addAttribute("buffetList", this.buffetService.findAll());

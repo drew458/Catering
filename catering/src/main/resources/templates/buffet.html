@@ -16,10 +16,12 @@
 				<img th:src="${buffet.imageUrl}" class="mt-4 img-fluid" />
 			</div>
 			
-			<div th:if="${!buffet.chefPreparatore.isEmpty()}">
-				<a th:text="#{addBuffet.selectChefAuthor}" th:href="@{'/chef' + '/' + ${buffet.chefPreparatore.getId()}}" />
-			</div>			
-			
+			<div th:if="${buffet.chefPreparatore}">
+				<div th:if="${!buffet.chefPreparatore.isEmpty()}">
+					<a th:text="#{addBuffet.selectChefAuthor}" th:href="@{'/chef' + '/' + ${buffet.chefPreparatore.getId()}}" />
+				</div>
+			</div>
+						
 			<div th:if="${!buffet.piatti.isEmpty()}" class="mt-4">
 				<h5 th:text="#{navbar.dishes}">Dishes</h5>
 				

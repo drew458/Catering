@@ -34,11 +34,11 @@ public class BuffetController {
 	
 	@GetMapping("/buffet/{id}")
     public String getBuffet(@PathVariable("id") Long id, Model model) {
-    	model.addAttribute("chef", this.buffetService.findById(id));
+    	model.addAttribute("buffet", this.buffetService.findById(id));
     	return "buffet";
     }
 	
-	@GetMapping("/addBuffet")
+	@GetMapping("/admin/addBuffet")
 	public String addBuffet(Model model) {
 		model.addAttribute("buffet", new Buffet());
 		model.addAttribute("chefList", this.chefService.findAll());
@@ -63,7 +63,9 @@ public class BuffetController {
 			model.addAttribute("messageIT", "Buffet aggiunto con successo!");
 			model.addAttribute("objectName", "buffet");
 			return "operationSuccessful";
-		}		
+		}
+		model.addAttribute("buffet", new Buffet());
+		model.addAttribute("chefList", this.chefService.findAll());
 		return "admin/addBuffetForm";
 	}
 }

@@ -33,8 +33,9 @@
             <div th:if"${!ingredientiList.isEmpty()}" class="form-group mb-6">
 				<label class="h5" for="ingredienti" th:text="#{addDish.selectIngredients}">Ingredienti</label>
 				<select class="form-select" th:field="${piatto.ingredienti}">
-					<option value="true" th:text="#{addChef.select}" >Seleziona..</option>
-					<option th:each="ingredente : ${ingredientiList}" th:value="${ingrediente.id}" th:text="${ingrediente.nome}">Nome ingrediente</option>
+					<option value="" th:text="#{addChef.select}" >Seleziona..</option>
+					<option th:each="ingredente : ${ingredientiList}" th:value="${ingrediente.id}" 
+						th:text="${ingrediente.nome}">Nome ingrediente</option>
 				</select> 
 			</div>
             

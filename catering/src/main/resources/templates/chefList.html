@@ -51,9 +51,13 @@
     		</div>
     	</div>
     	
-    	<div th:unless="${!chefs.isEmpty()}">
+    	<div th:unless="${!chefs.isEmpty()}" sec:authorize="hasAuthority('ADMIN')">
 			<p th:text="#{chefList.noChefFound}">No chefs here!</p>
-    		<a th:text="#{adminHome.addChef}" th:href="@{/addChef}" class="btn btn-primary">Add chef</a>
+    		<a th:text="#{adminHome.addChef}" th:href="@{/admin/addChef}" class="btn btn-primary">Add chef</a>
+    	</div>
+    	
+    	<div th:unless="${!chefs.isEmpty()}" sec:authorize="hasAuthority('DEFAULT')">
+			<p th:text="#{chefList.noChefFound}">No chefs here!</p>
     	</div>
     	    
 	</div>    

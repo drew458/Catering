@@ -68,26 +68,17 @@
 	                    data-popper-placement="bottom-end">
 	                    <li>
 	                    	<!-- TODO: not working -->
-	                    	<a class="dropdown-item" th:text="#{chef.header}" th:href"@{/addChef}">Chef</a>
+	                    	<a class="dropdown-item" th:text="#{chef.header}" th:href"@{/admin/addChef}">Chef</a>
 	                    </li>
 	                    <li>
-	                        <a class="dropdown-item" th:text="#{buffet.header}" th:href="@{/addBuffet}">Buffet</a>
+	                        <a class="dropdown-item" th:text="#{buffet.header}" th:href="@{/admin/addBuffet}">Buffet</a>
 	                    </li>
 	                    <li>
-	                        <a class="dropdown-item" th:text="#{dish.header}" th:href="@{/addDish}">Dish</a>
+	                        <a class="dropdown-item" th:text="#{dish.header}" th:href="@{/admin/addDish}">Dish</a>
 	                    </li>	                
 	                </ul>
                 </div>
 				<!-- END Add... dropdown menu -->
-				
-				<!-- START SearchBar -->
-				<form sec:authorize="isAuthenticated()" class="d-flex" role="search">
-				 	<input class="form-control me-2" type="search" th:placeholder="#{navbar.search}" aria-label="Search">
-				 	<button class="btn btn-outline-success me-4" type="submit">
-				 		<i class="bi bi-search"></i>
-				 	</button>
-				</form>
-				<!-- END SearchBar -->
 				
 				<!-- START Signup and Login buttons -->
 				<div class="text-end" sec:authorize="isAnonymous()">

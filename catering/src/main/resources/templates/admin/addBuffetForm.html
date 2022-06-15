@@ -34,7 +34,7 @@
            <div th:if="${!chefList.isEmpty()}" class="form-group mb-6">
 				<label class="h5" for="chef" th:text="#{addBuffet.selectChefAuthor}">Chef preparatore</label>
 				<select class="form-select" th:field="${buffet.chefPreparatore}">
-					<option value="true" th:text="#{addChef.select}" >Seleziona..</option>
+					<option value="" th:text="#{addChef.select}" >Seleziona..</option>
 					<option th:each="chef : ${chefList}" th:value="${chef.id}" th:text="${chef.nome + ' ' + chef.cognome}">Nome chef</option>
 				</select>
 			</div>

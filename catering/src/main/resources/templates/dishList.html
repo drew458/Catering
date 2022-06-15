@@ -46,9 +46,13 @@
     		</div>
     	</div>
     	
-    	<div th:unless=${!piatti.isEmpty()}>
+    	<div th:unless="${!piatti.isEmpty()}" sec:authorize="hasAuthority('ADMIN')">
     		<p th:text="#{dishList.noDishFound}">No dishes here!</p>
-    		<a th:text="#{adminHome.addDish}" th:href="@{/addDish}" class="btn btn-primary">Add dish</a>
+    		<a th:text="#{adminHome.addDish}" th:href="@{/admin/addDish}" class="btn btn-primary">Add dish</a>
+    	</div>
+    	
+    	<div th:unless="${!piatti.isEmpty()}" sec:authorize="hasAuthority('DEFAULT')">
+    		<p th:text="#{dishList.noDishFound}">No dishes here!</p>
     	</div>
 	</div>
 </body>

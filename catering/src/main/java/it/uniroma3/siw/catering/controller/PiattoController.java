@@ -38,7 +38,7 @@ public class PiattoController {
     	return "dish";
     }
 	
-	@GetMapping("/addDish")
+	@GetMapping("/admin/addDish")
 	public String addDish(Model model) {
 		model.addAttribute("piatto", new Piatto());
 		model.addAttribute("ingredientiList", this.ingredienteService.findAll());
