@@ -51,10 +51,9 @@
     		</div>
     	</div>
     	
-    	<!-- TODO get better -->
     	<div th:unless="${chef}">
-			<p>No chefs here!</p>
-    		<a th:href="@{/addChef}" class="btn btn-primary">Add chef</a>
+			<p th:text="#{chefList.noChefFound}">No chefs here!</p>
+    		<a th:text="#{adminHome.addChef}" th:href="@{/addChef}" class="btn btn-primary">Add chef</a>
     	</div>
     	    
 	</div>    

@@ -46,10 +46,9 @@
     		</div>
     	</div>
     	
-    	<!-- TODO get better -->
     	<div th:unless={piatti}>
-    		<p>No dishes here!</p>
-    		<a th:href="@{/addDish}" class="btn btn-primary">Add dish</a>
+    		<p th:text="#{dishList.noDishFound}">No dishes here!</p>
+    		<a th:text="#{adminHome.addDish}" th:href="@{/addDish}" class="btn btn-primary">Add dish</a>
     	</div>
 	</div>
 </body>

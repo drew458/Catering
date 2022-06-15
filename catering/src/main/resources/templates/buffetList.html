@@ -47,10 +47,9 @@
     		</div>
     	</div>
     	
-    	<!-- TODO get better -->
     	<div th:unless="${buffets}">
-    		<p>No buffets here!</p>
-    		<a th:href="@{/addBuffet}" class="btn btn-primary">Add buffet</a>
+    		<p th:text="#{buffetList.noBuffetFound}">No buffets here!</p>
+    		<a th:text="#{adminHome.addBuffet}" th:href="@{/addBuffet}" class="btn btn-primary">Add buffet</a>
     	</div>
     	
 	</div>
