@@ -18,11 +18,11 @@
 			<!-- if the user logged in via email and password -->
 			<a th:if="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.core.userdetails.User)}" 
-                class="navbar-brand" th:href="@{/default}">Catering</a>
+                class="navbar-brand link-success" th:href="@{/default}">Catering</a>
             <!-- if the user logged in via OAuth2 -->
             <a th:unless="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.core.userdetails.User)}"
-               class="navbar-brand" th:href="@{/oauthDefault}">Catering</a>  
+               class="navbar-brand link-success" th:href="@{/oauthDefault}">Catering</a>  
               
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
 					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,6 +75,9 @@
 	                    </li>
 	                    <li>
 	                        <a class="dropdown-item" th:text="#{dish.header}" th:href="@{/admin/addDish}">Dish</a>
+	                    </li>
+	                    <li>
+	                        <a class="dropdown-item" th:text="#{ingredient.header}" th:href="@{/admin/addIngrediente}">Ingrediente</a>
 	                    </li>	                
 	                </ul>
                 </div>
@@ -84,7 +87,7 @@
 				<div class="text-end" sec:authorize="isAnonymous()">
                     <button type="button" class="btn btn-outline-dark me-2" onclick='window.location.href="/login"'
                     	th:text="#{index.login}">Login</button>
-                    <button type="button" class="btn btn-warning" onclick='window.location.href="/register"'
+                    <button type="button" class="btn btn-success" onclick='window.location.href="/register"'
                     	th:text="#{index.register}">Sign up</button>
                 </div>
 				<!-- END Signup and Login buttons -->

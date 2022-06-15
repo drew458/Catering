@@ -32,6 +32,11 @@
 	        <a th:if="${objetName.equals('piatto')}" class="btn btn-primary btn-block mt-4 mb-4" th:text="#{operationSuccessful.addDish}" 
 	        	th:href="@{/admin/addDish}">
 	        	Aggiungi un altro piatto
+	        </a>
+	        
+	        <a th:if="${objetName.equals('ingrediente')}" class="btn btn-primary btn-block mt-4 mb-4" th:text="#{operationSuccessful.addIngrediente}" 
+	        	th:href="@{/admin/addIngrediente}">
+	        	Aggiungi un altro ingrediente
 	        </a>        
         </div>
     </div> 

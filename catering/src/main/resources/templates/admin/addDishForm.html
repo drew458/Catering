@@ -11,7 +11,7 @@
 		<div class="mb-4">
 	    	<h1 th:text="#{adminHome.addDish}">Aggiungi un nuovo piatto</h1>
 	    </div>
-		<form th:action="@{/addDishForm}" method="POST">
+		<form th:action="@{/admin/addDishForm}" method="POST">
 			<div class="form-floating mb-4">
                 <input type="text" id="piattoNome" class="form-control" th:placeholder="#{addBuffet.name}"
                 	th:field="${piatto.nome}" />
@@ -34,7 +34,7 @@
 				<label class="h5" for="ingredienti" th:text="#{addDish.selectIngredients}">Ingredienti</label>
 				<select class="form-select" th:field="${piatto.ingredienti}">
 					<option value="" th:text="#{addChef.select}" >Seleziona..</option>
-					<option th:each="ingredente : ${ingredientiList}" th:value="${ingrediente.id}" 
+					<option th:each="ingrediente : ${ingredientiList}" th:value="${ingrediente.id}" 
 						th:text="${ingrediente.nome}">Nome ingrediente</option>
 				</select> 
 			</div>

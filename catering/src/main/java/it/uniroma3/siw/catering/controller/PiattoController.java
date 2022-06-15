@@ -27,14 +27,14 @@ public class PiattoController {
 	private PiattoValidator piattoValidator;
 	
 	@GetMapping("/dishList")
-	public String getBuffetList(Model model) {
+	public String getDishList(Model model) {
 		model.addAttribute("piatti", this.piattoService.findAll());
 		return "dishList";
 	}
 	
 	@GetMapping("/dish/{id}")
-    public String getBuffet(@PathVariable("id") Long id, Model model) {
-    	model.addAttribute("dish", this.piattoService.findById(id));
+    public String getDish(@PathVariable("id") Long id, Model model) {
+    	model.addAttribute("piatto", this.piattoService.findById(id));
     	return "dish";
     }
 	
@@ -45,15 +45,15 @@ public class PiattoController {
 		return "admin/addDishForm";
 	}
 	
-	@GetMapping("/deleteDish/{id}")
-	public String deleteBuffet(@PathVariable("id") Long id, Model model){
+	@GetMapping("/admin/deleteDish/{id}")
+	public String deleteDish(@PathVariable("id") Long id, Model model){
 		this.piattoService.deleteById(id);
 		model.addAttribute("messageEN", "Dish deleted successfully");
 		model.addAttribute("messageIT", "Piatto eliminato correttamente");
 		return "operationSuccessful";
 	}
 	
-	@PostMapping("/addDishForm")
+	@PostMapping("/admin/addDishForm")
 	public String addDishForm(@ModelAttribute("piatto") Piatto piatto, BindingResult piattoBindingResult, Model model) {
 		this.piattoValidator.validate(piatto, piattoBindingResult);
 		

@@ -12,7 +12,7 @@
 	    	<h1 th:text="#{adminHome.addChef}">Aggiungi un nuovo chef</h1>
 	    </div>
 		
-		<form th:action="@{/addChefForm}" method="POST">
+		<form th:action="@{/admin/addChefForm}" method="POST">
 			<div class="input-group mb-4">
 			 	<span th:text="#{register.nameSurname}" class="input-group-text">First and last name</span>
 			 	<input type="text" aria-label="Chef first name" th:placeholder="#{register.firstName}" class="form-control"

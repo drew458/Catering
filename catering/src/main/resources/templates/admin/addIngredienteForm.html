@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{adminHome.title})">
+</head>
+<body>
+	<!-- START Navbar -->
+	<nav th:replace="fragments/base.html :: navbar"></nav>
+	<!-- END Navbar -->
+
+	<div class="container text-center mt-4">
+		<div class="mb-4">
+	    	<h1 th:text="#{adminHome.addIngrediente}">Aggiungi un nuovo ingrediente</h1>
+	    </div>
+		<form th:action="@{/admin/addIngredienteForm}" method="POST">
+			<div class="form-floating mb-4">
+                <input type="text" id="ingredienteNome" class="form-control" th:placeholder="#{addBuffet.name}"
+                	th:field="${ingrediente.nome}" />
+            	<label th:text="#{addBuffet.name}" for="ingredienteNome">Nome</label>
+            </div>
+            
+            <div class="form-floating mb-4">
+                <input type="text" id="ingredienteOrigine" class="form-control" th:placeholder="#{addIngrediente.origin}"
+                	th:field="${ingrediente.origine}" />
+            	<label th:text="#{addIngrediente.origin}" for="ingredienteOrigine">Origine</label>
+            </div>
+            
+            <div class="form-floating mb-4">
+                <input type="text" id="ingredienteDescrizione" class="form-control" th:placeholder="#{addBuffet.description}"
+                	th:field="${ingrediente.descrizione}" />
+            	<label th:text="#{addBuffet.description}" for="ingredienteDescrizione">Descrizione</label>
+            </div>
+            
+            <!-- Submit button -->
+            <button th:text="#{addIngrediente.addButton}" type="submit" class="btn btn-primary btn-block mt-4">Aggiungi ingrediente</button>
+		</form>
+	</div>
+</body>
+</html>

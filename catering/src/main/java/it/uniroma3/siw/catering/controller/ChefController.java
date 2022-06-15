@@ -45,7 +45,7 @@ public class ChefController {
 		return "admin/addChefForm";
 	}
 	
-	@GetMapping("/deleteChef/{id}")
+	@GetMapping("/admin/deleteChef/{id}")
 	public String deleteChef(@PathVariable("id") Long id, Model model){
 		this.chefService.deleteById(id);
 		model.addAttribute("messageEN", "Chef deleted successfully");
@@ -53,7 +53,7 @@ public class ChefController {
 		return "operationSuccessful";
 	}
 	
-	@PostMapping("/addChefForm")
+	@PostMapping("/admin/addChefForm")
 	public String addChefForm(@ModelAttribute("chef") Chef chef, BindingResult chefBindingResult, Model model) {
 		this.chefValidator.validate(chef, chefBindingResult);
 		
