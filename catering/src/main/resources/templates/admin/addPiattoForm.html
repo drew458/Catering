@@ -9,7 +9,7 @@
 
 	<div class="container text-center mt-4">
 		<div class="mb-4">
-	    	<h1 th:text="#{adminHome.addDish}">Aggiungi un nuovo piatto</h1>
+	    	<h1 th:text="#{adminHome.addPiatto}">Aggiungi un nuovo piatto</h1>
 	    </div>
 		<form th:action="@{/admin/addPiattoForm}" method="POST">
 			<div class="form-floating mb-4">
@@ -31,7 +31,7 @@
             </div>
             
             <div th:if"${!ingredientiList.isEmpty()}" class="form-group mb-6">
-				<label class="h5" for="ingredienti" th:text="#{addDish.selectIngredients}">Ingredienti</label>
+				<label class="h5" for="ingredienti" th:text="#{addPiatto.selectIngredients}">Ingredienti</label>
 				<select class="form-select" th:field="${piatto.ingredienti}">
 					<option value="" th:text="#{addChef.select}" >Seleziona..</option>
 					<option th:each="ingrediente : ${ingredientiList}" th:value="${ingrediente.id}" 
@@ -40,7 +40,7 @@
 			</div>
             
             <!-- Submit button -->
-            <button th:text="#{addDish.addButton}" type="submit" class="btn btn-primary btn-block mt-4">Aggiungi piatto</button>
+            <button th:text="#{addPiatto.addButton}" type="submit" class="btn btn-primary btn-block mt-4">Aggiungi piatto</button>
 		</form>
 	</div>
 </body>

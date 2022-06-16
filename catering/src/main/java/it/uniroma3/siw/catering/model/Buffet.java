@@ -24,7 +24,7 @@ public class Buffet {
 	/**
 	 * La strategia di fetch è LAZY perche non è detto che si vuole sempre vedere l'autore del buffet
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Chef chefPreparatore;
 	
 	/**

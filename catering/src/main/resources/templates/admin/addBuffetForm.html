@@ -38,6 +38,14 @@
 					<option th:each="chef : ${chefList}" th:value="${chef.id}" th:text="${chef.nome + ' ' + chef.cognome}">Nome chef</option>
 				</select>
 			</div>
+			
+			<div th:if="${!piattoList.isEmpty()}" class="form-group mb-6">
+				<label class="h5" for="piatto" th:text="#{addBuffet.selectPiatto}">Piatti</label>
+				<select class="form-select" th:field="${buffet.piatti}">
+					<option value="" th:text="#{addChef.select}" >Seleziona..</option>
+					<option th:each="piatto : ${piattoList}" th:value="${piatto.id}" th:text="${piatto.nome}">Nome piatto</option>
+				</select>
+			</div>
             
             <!-- Submit button -->
             <button th:text="#{addBuffet.addButton}" type="submit" class="btn btn-primary btn-block mt-4">Aggiungi buffet</button>

@@ -16,10 +16,10 @@
 				<img th:src="${piatto.imageUrl}" class="mt-4 img-fluid" />
 			</div>			
 			
-			<div th:if="${!piatto.ingredienti.isEmpty()}" class="mt-4">
-				<h5 th:text="#{addDish.selectIngredients}">Ingredients</h5>
+			<div th:if="${!piatto.ingredientiList.isEmpty()}" class="mt-4">
+				<h5 th:text="#{addPiatto.selectIngredients}">Ingredients</h5>
 				
-				<div th:each="ingrediente : ${piatto.ingredienti}">
+				<div th:each="ingrediente : ${piatto.ingredientiList}">
 		        	<div class="card">
 			          	<div class="card-body">
 			            	<h5 th:text="${ingrediente.nome}" class="card-title">Ingredient name</h5>
@@ -47,6 +47,5 @@
 		
 		<div th:unless="${piatto}" th:text="#{piatto.notExist}">This piatto does not exist</div>
 	</div> 
-	
 </body>
 </html>
