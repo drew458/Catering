@@ -11,7 +11,7 @@
 		<div class="mb-4">
 	    	<h1 th:text="#{adminHome.addDish}">Aggiungi un nuovo piatto</h1>
 	    </div>
-		<form th:action="@{/admin/addDishForm}" method="POST">
+		<form th:action="@{/admin/addPiattoForm}" method="POST">
 			<div class="form-floating mb-4">
                 <input type="text" id="piattoNome" class="form-control" th:placeholder="#{addBuffet.name}"
                 	th:field="${piatto.nome}" />
@@ -25,9 +25,9 @@
             </div>
             
             <div class="form-floating mb-4">
-            	<input type="text" id="dishImageUrl" class="form-control" th:placeholder="#{addChef.imageUrl}"
+            	<input type="text" id="piattoImageUrl" class="form-control" th:placeholder="#{addChef.imageUrl}"
                 	th:field="${piatto.imageUrl}" />
-            	<label th:text="#{addChef.imageUrl}" for="dishImageUrl">URL immagine</label>
+            	<label th:text="#{addChef.imageUrl}" for="piattoImageUrl">URL immagine</label>
             </div>
             
             <div th:if"${!ingredientiList.isEmpty()}" class="form-group mb-6">

@@ -26,35 +26,35 @@ public class PiattoController {
 	@Autowired
 	private PiattoValidator piattoValidator;
 	
-	@GetMapping("/dishList")
-	public String getDishList(Model model) {
+	@GetMapping("/piattoList")
+	public String getPiattoList(Model model) {
 		model.addAttribute("piatti", this.piattoService.findAll());
-		return "dishList";
+		return "piattoList";
 	}
 	
 	@GetMapping("/piatto/{id}")
-    public String getDish(@PathVariable("id") Long id, Model model) {
+    public String getPiatto(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("piatto", this.piattoService.findById(id));
     	return "piatto";
     }
 	
-	@GetMapping("/admin/addDish")
-	public String addDish(Model model) {
+	@GetMapping("/admin/addPiatto")
+	public String addPiatto(Model model) {
 		model.addAttribute("piatto", new Piatto());
 		model.addAttribute("ingredientiList", this.ingredienteService.findAll());
-		return "admin/addDishForm";
+		return "admin/addPiattoForm";
 	}
 	
-	@GetMapping("/admin/deleteDish/{id}")
-	public String deleteDish(@PathVariable("id") Long id, Model model){
+	@GetMapping("/admin/deletePiatto/{id}")
+	public String deletePiatto(@PathVariable("id") Long id, Model model){
 		this.piattoService.deleteById(id);
 		model.addAttribute("messageEN", "Piatto deleted successfully");
 		model.addAttribute("messageIT", "Piatto eliminato correttamente");
 		return "operationSuccessful";
 	}
 	
-	@PostMapping("/admin/addDishForm")
-	public String addDishForm(@ModelAttribute("piatto") Piatto piatto, BindingResult piattoBindingResult, Model model) {
+	@PostMapping("/admin/addPiattoForm")
+	public String addPiattoForm(@ModelAttribute("piatto") Piatto piatto, BindingResult piattoBindingResult, Model model) {
 		this.piattoValidator.validate(piatto, piattoBindingResult);
 		
 		if(!piattoBindingResult.hasErrors()) {
@@ -64,6 +64,6 @@ public class PiattoController {
 			model.addAttribute("objectName", "piatto");
 			return "operationSuccessful";
 		}		
-		return "admin/addDishForm";
+		return "admin/addPiattoForm";
 	}
 }
