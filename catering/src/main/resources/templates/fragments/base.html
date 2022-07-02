@@ -13,16 +13,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">	
 </head>
 <body>
-	<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-light">
-		<div class="container-fluid">
-			<!-- if the user logged in via email and password -->
-			<a th:if="${#authentication.getPrincipal().getClass() == 
-                			T(org.springframework.security.core.userdetails.User)}" 
-                class="navbar-brand link-success" th:href="@{/default}">Catering</a>
-            <!-- if the user logged in via OAuth2 -->
-            <a th:unless="${#authentication.getPrincipal().getClass() == 
-                			T(org.springframework.security.core.userdetails.User)}"
-               class="navbar-brand link-success" th:href="@{/oauthDefault}">Catering</a>  
+	<nav th:fragment="navbar" class="navbar navbar-expand-sm p-2 sticky-top shadow bg-light">
+		<div class="container">
+		
+			<!-- if the user is anonymous -->
+			<div sec:authorize="isAnonymous()">
+				<a class="navbar-brand link-success" th:href="@{/}">Catering</a>
+			</div>
+			
+			<!-- if the user is authenticated -->
+			<div sec:authorize="isAuthenticated()">
+				<!-- if the user logged in via email and password -->
+				<a th:if="${#authentication.getPrincipal().getClass() ==
+					T(org.springframework.security.core.userdetails.User)}" 
+					class="navbar-brand link-success lead" th:href="@{/default}">Catering</a>
+				<!-- if the user logged in via OAuth2 -->
+				<a th:unless="${#authentication.getPrincipal().getClass() ==
+					T(org.springframework.security.core.userdetails.User)}"
+					class="navbar-brand link-success" th:href="@{/oauthDefault}">Catering</a>
+			</div>
               
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
 					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,18 +41,28 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- START Generic buttons -->
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<!-- if the user logged in via email and password -->
-					<li th:if="${#authentication.getPrincipal().getClass() == 
-                			T(org.springframework.security.core.userdetails.User)}"
-                		class="nav-item">
-						<a class="nav-link active" aria-current="page" th:href="@{/default}">Home</a>
-					</li>
-					<!-- if the user logged in via OAuth2 -->
-					<li th:unless="${#authentication.getPrincipal().getClass() == 
-                			T(org.springframework.security.core.userdetails.User)}"
-                		class="nav-item">
-                		<a class="nav-link active" aria-current="page" th:href="@{/oauthDefault}">Home</a>
-					</li>
+					<!-- if the user is anonymous -->
+					<div sec:authorize="isAnonymous()">
+						<a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+					</div>
+					
+					<!-- if the user is authenticated -->
+					<div sec:authorize="isAuthenticated()">
+						<!-- if the user logged in via email and password -->
+						<li th:if="${#authentication.getPrincipal().getClass() == 
+	                			T(org.springframework.security.core.userdetails.User)}"
+	                			class="nav-item">
+							<a class="nav-link active" aria-current="page" th:href="@{/default}">Home</a>
+						</li>
+						
+						<!-- if the user logged in via OAuth2 -->
+						<li th:unless="${#authentication.getPrincipal().getClass() == 
+	                			T(org.springframework.security.core.userdetails.User)}"
+	                		class="nav-item">
+	                		<a class="nav-link active" aria-current="page" th:href="@{/oauthDefault}">Home</a>
+						</li>
+					</div>					
+					
 					<li class="nav-item">
 						<a class="nav-link" th:text="#{navbar.chef}" th:href="@{/chefList}">Chef</a>
 					</li>
@@ -58,26 +77,25 @@
 				
 				<!-- START Add... dropdown menu -->
 				<div class="dropdown me-4" sec:authorize="hasAuthority('ADMIN')"> 		
-                	<a class="d-block text-decoration-none dropdown-toggle" 
-                		id="dropdownAdd"  aria-expanded="true" data-bs-toggle="dropdown">
-                		<span th:text="#{navbar.add}">Aggiungi...</span>
+                	<a class="d-block text-decoration-none nav-link dropdown-toggle" 
+                		id="dropdownAdd"  aria-expanded="true" data-bs-toggle="dropdown" style="color: green;">
+                		<i class="bi bi-plus" style="font-size:22px;"></i>
                 	</a>	                    
 	                
-	                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser" 
+	                <ul class="dropdown-menu mx-0 p-2 text-small gap-1" aria-labelledby="dropdownUser" 
 	                	style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);"
 	                    data-popper-placement="bottom-end">
 	                    <li>
-	                    	<!-- TODO: not working -->
-	                    	<a class="dropdown-item" th:text="#{chef.header}" th:href"@{/admin/addChef}">Chef</a>
+	                    	<a class="dropdown-item rounded-2" th:text="#{chef.header}" th:href="@{/admin/addChef}">Chef</a>
 	                    </li>
 	                    <li>
-	                        <a class="dropdown-item" th:text="#{buffet.header}" th:href="@{/admin/addBuffet}">Buffet</a>
+	                        <a class="dropdown-item rounded-2" th:text="#{buffet.header}" th:href="@{/admin/addBuffet}">Buffet</a>
 	                    </li>
 	                    <li>
-	                        <a class="dropdown-item" th:text="#{piatto.header}" th:href="@{/admin/addPiatto}">Piatto</a>
+	                        <a class="dropdown-item rounded-2" th:text="#{piatto.header}" th:href="@{/admin/addPiatto}">Piatto</a>
 	                    </li>
 	                    <li>
-	                        <a class="dropdown-item" th:text="#{ingredient.header}" th:href="@{/admin/addIngrediente}">Ingrediente</a>
+	                        <a class="dropdown-item rounded-2" th:text="#{ingredient.header}" th:href="@{/admin/addIngrediente}">Ingrediente</a>
 	                    </li>	                
 	                </ul>
                 </div>
@@ -97,40 +115,39 @@
 					<!-- Login via Google OAuth2 -->                   
                 	<a th:if="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser)}" 
-            			class="d-block text-decoration-none dropdown-toggle" 
-            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown">
-                		<span th:text="${#authentication.getPrincipal().getAttributes().name}"></span>
+            			class="d-block text-decoration-none nav-link dropdown-toggle" 
+            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown" style="color: green;">
+                		<span class="lead" th:text="${#authentication.getPrincipal().getAttributes().name}"></span>
                 	</a>
                 	
                 	<!-- Login via Github OAuth2 -->
                 	<a th:if="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.oauth2.core.user.DefaultOAuth2User)}" 
-            			class="d-block text-decoration-none dropdown-toggle" 
-            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown">
-                		<span th:text="${#authentication.getPrincipal().getAttributes().login}"></span>
+            			class="d-block text-decoration-none nav-link dropdown-toggle" 
+            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown" style="color: green;">
+                		<span class="lead" th:text="${#authentication.getPrincipal().getAttributes().login}"></span>
                 	</a>          		
                 
                 	<!-- Login via email and password -->
                 	<a th:if="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.core.userdetails.User)}" 
-            			class="d-block text-decoration-none dropdown-toggle" 
-                		id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown">
-                		<span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+            			class="d-block text-decoration-none nav-link dropdown-toggle" 
+                		id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown" style="color: green;">
+                		<span class="lead" th:text="${#authentication.getPrincipal().getUsername()}"></span>
                 	</a>	                    
 	                
-	                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser" 
+	                <ul class="dropdown-menu text-small mx-0 p-2 gap-1" aria-labelledby="dropdownUser" 
 	                	style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);"
 	                    data-popper-placement="bottom-end">
 	                    <li>
-	                    	<!-- TODO: not working -->
-	                    	<a class="dropdown-item" th:text="#{navbar.changePassword}" 
-	                        			th:href"@{/changePassword}">Cambia password</a>
+	                    	<a class="dropdown-item rounded-2" th:text="#{navbar.changePassword}" 
+	                        			th:href="@{/changePassword}">Cambia password</a>
 	                    </li>
 	                    <li>
-	                        <hr class="dropdwown-divider">
+	                        <hr class="dropdown-divider">
 	                    </li>
 	                    <li>
-	                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+	                        <a class="dropdown-item rounded-2" th:href="@{/logout}">Logout</a>
 	                    </li>	                
 	                </ul>
                 </div>
