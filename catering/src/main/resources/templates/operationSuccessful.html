@@ -10,31 +10,27 @@
     <div class="container text-center mt-4">
         <h1 th:text="__${#locale}__=='en'? ${messageEN} : ${messageIT}">Success!</h1>
         
-        <div sec:authorize="isAnonymous()" class="mt-3">
-	        <form class="d-inline mt-2" th:action="@{/login}" method="get">
-	     		<button type="submit" class="btn btn-primary btn-block mb-4" th:text="#{index.login}">
-	        		Login
-	      		</button>
-	     	</form>
+        <div sec:authorize="isAnonymous()" class="mt-5">
+	     	<a class="btn btn-success btn-block mb-4" th:href="@{/login}" th:text="#{index.login}">Login</a>
         </div>
         
         <div th:if=${objetName}>
-        	<a th:if="${objetName.equals('chef')}" class="btn btn-primary btn-block mt-4 mb-4" th:text="#{operationSuccessful.addChef}" 
+        	<a th:if="${objetName.equals('chef')}" class="btn btn-success btn-block mt-4 mb-4" th:text="#{operationSuccessful.addChef}" 
 	        	th:href="@{/admin/addChef}">
 	        	Aggiungi un altro chef
 	        </a>
 	        
-	        <a th:if="${objetName.equals('buffet')}" class="btn btn-primary btn-block mt-4 mb-4" th:text="#{operationSuccessful.addBuffet}" 
+	        <a th:if="${objetName.equals('buffet')}" class="btn btn-success btn-block mt-4 mb-4" th:text="#{operationSuccessful.addBuffet}" 
 	        	th:href="@{/admin/addBuffet}">
 	        	Aggiungi un altro buffet
 	        </a>
 	        
-	        <a th:if="${objetName.equals('piatto')}" class="btn btn-primary btn-block mt-4 mb-4" th:text="#{operationSuccessful.addPiatto}" 
+	        <a th:if="${objetName.equals('piatto')}" class="btn btn-success btn-block mt-4 mb-4" th:text="#{operationSuccessful.addPiatto}" 
 	        	th:href="@{/admin/addPiatto}">
 	        	Aggiungi un altro piatto
 	        </a>
 	        
-	        <a th:if="${objetName.equals('ingrediente')}" class="btn btn-primary btn-block mt-4 mb-4" th:text="#{operationSuccessful.addIngrediente}" 
+	        <a th:if="${objetName.equals('ingrediente')}" class="btn btn-success btn-block mt-4 mb-4" th:text="#{operationSuccessful.addIngrediente}" 
 	        	th:href="@{/admin/addIngrediente}">
 	        	Aggiungi un altro ingrediente
 	        </a>        

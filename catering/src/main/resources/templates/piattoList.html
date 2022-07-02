@@ -8,7 +8,7 @@
 	<!-- END Navbar -->
 
 	<div class="container text-center mt-4">
-    	<h2 th:text="#{piattoList.header}" class="mb-4">Dishes</h2>
+    	<h2 th:text="#{piattoList.header}" class="display-4 mb-4">Dishes</h2>
     	
     	<div th:if="${!piatti.isEmpty()}" class="container mt-4">
     		<div class="row">
@@ -27,7 +27,7 @@
 		            			<div class="row mt-4">
 		            				<div class="col-lg-6 col-md-6 mb-4">
 		            					<a th:text="#{chefList.seeMore}" 
-		            						th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
+		            						th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-success">See more</a>
 		            				</div>
 		            				<div class="col-lg-6 col-md-6 mb-4">
 		            					<a th:text="#{adminHome.delete}" 
@@ -38,7 +38,7 @@
 			            				            	
 			            	<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
 			            		<a th:text="#{chefList.seeMore}" 
-			            			th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-primary">See more</a>
+			            			th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-success">See more</a>
 			            	</div>				            	
 			          	</div>
 	        		</div>	
@@ -48,11 +48,11 @@
     	
     	<div th:unless="${!piatti.isEmpty()}" sec:authorize="hasAuthority('ADMIN')">
     		<p th:text="#{piattoList.noPiattoFound}">No dishes here!</p>
-    		<a th:text="#{adminHome.addPiatto}" th:href="@{/admin/addPiatto}" class="btn btn-primary">Add piatto</a>
+    		<a th:text="#{adminHome.addPiatto}" th:href="@{/admin/addPiatto}" class="btn btn-success">Add piatto</a>
     	</div>
     	
     	<div th:unless="${!piatti.isEmpty()}" sec:authorize="hasAuthority('DEFAULT')">
-    		<p th:text="#{piattoList.noPiattoFound}">No dishes here!</p>
+    		<p class="lead" th:text="#{piattoList.noPiattoFound}">No dishes here!</p>
     	</div>
 	</div>
 </body>
