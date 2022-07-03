@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">	
 </head>
 <body>
-	<nav th:fragment="navbar" class="navbar navbar-expand-sm p-2 sticky-top shadow bg-light">
+	<nav th:fragment="navbar" class="navbar navbar-expand-sm p-2 sticky-top shadow" style="background-color: lightgray;">
 		<div class="container">
 		
 			<!-- if the user is anonymous -->
@@ -116,7 +116,7 @@
                 	<a th:if="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser)}" 
             			class="d-block text-decoration-none nav-link dropdown-toggle" 
-            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown" style="color: green;">
+            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown" style="color: #355E3B;">
                 		<span class="lead" th:text="${#authentication.getPrincipal().getAttributes().name}"></span>
                 	</a>
                 	
@@ -124,7 +124,7 @@
                 	<a th:if="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.oauth2.core.user.DefaultOAuth2User)}" 
             			class="d-block text-decoration-none nav-link dropdown-toggle" 
-            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown" style="color: green;">
+            			id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown" style="color: #355E3B;">
                 		<span class="lead" th:text="${#authentication.getPrincipal().getAttributes().login}"></span>
                 	</a>          		
                 
@@ -132,7 +132,7 @@
                 	<a th:if="${#authentication.getPrincipal().getClass() == 
                 			T(org.springframework.security.core.userdetails.User)}" 
             			class="d-block text-decoration-none nav-link dropdown-toggle" 
-                		id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown" style="color: green;">
+                		id="dropdownUser"  aria-expanded="true" data-bs-toggle="dropdown" style="color: #355E3B;">
                 		<span class="lead" th:text="${#authentication.getPrincipal().getUsername()}"></span>
                 	</a>	                    
 	                
