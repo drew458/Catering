@@ -13,12 +13,12 @@
 			<div th:if="${!buffet.imageUrl.isEmpty()}">
 				<div class="container col-xxl-8 px-4 py-2">
 		            <div class="row flex-lg-row-reverse align-items-center g-5 py-2">
-		            	<div class="col-10 col-sm-8 col-lg-6">
-		                    <img th:src="${buffet.imageUrl}" class="d-block mx-lg-auto img-fluid rounded-3" width="400" height="400">
-		                </div>
-		                <div class="col-lg-6">
+		            	<div class="col-lg-6">
 		                    <h3 class="display-4 mt-2 1h-1 mb-3" th:text="${buffet.nome}">Nome</h3>
 		                    <p class="mt-2 1h-1 mb-3" th:text="${buffet.descrizione}">Descrizione</p>
+		                </div>
+		            	<div class="col-10 col-sm-8 col-lg-6">
+		                    <img th:src="${buffet.imageUrl}" class="d-block mx-lg-auto img-fluid rounded-3" width="400" height="400">
 		                </div>
 		            </div>
 		        </div>
@@ -55,7 +55,7 @@
 					            	</div>
 					            	<div class="col-lg-6 col-md-6 mb-4">
 					            		<a th:text="#{adminHome.delete}" 
-					            			th:href="@{'/deleteChef' + '/' + ${buffet.chefPreparatore.id}}" class="btn btn-danger">Delete</a>
+					            			th:href="@{'/admin/deleteChef' + '/' + ${buffet.chefPreparatore.id}}" class="btn btn-danger">Delete</a>
 					            	</div>
 			          			</div>
 			          		</div>				          			
@@ -69,37 +69,39 @@
         		</div>
 			</div>
 						
-			<div th:if="${!buffet.piatti.isEmpty()}" class="mt-4">
-				<h5 th:text="#{navbar.dishes}">Dishes</h5>
+			<div th:if="${!buffet.piatti.isEmpty()}" class="text-center mt-4">
+				<h5 th:text="#{navbar.dishes}" class="h5 display-6">Dishes</h5>
 				
-				<div th:each="piatto : ${buffet.piatti}">
-		        	<div class="card w-50 mt-2 rounded-3 mx-auto">
-			          	<div class="card-body">
-			            	<h5 th:text="${piatto.nome}" class="card-title">Ingredient name</h5>
-			            	<div class="text-center mt-1">
-			            		<span th:text="${piatto.descrizione}" class="card-text">Description</span>
-			            	</div>
-			            	
-			            	<div sec:authorize="hasAuthority('ADMIN')" class="container text-center">
-		            			<div class="row mt-4">
-		            				<div class="col-lg-6 col-md-6 mb-4">
-		            					<a th:text="#{chefList.seeMore}" 
-		            						th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-success">See more</a>
-		            				</div>
-		            				<div class="col-lg-6 col-md-6 mb-4">
-				            			<a th:text="#{adminHome.delete}" 
-					            			th:href="@{'/admin/deletePiatto' + '/' + ${piatto.id}}" class="btn btn-danger">Delete</a>
-				            		</div>				            				
-		            			</div>
-			            	</div>
-			            	
-			          		<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
-			          			<a th:text="#{chefList.seeMore}" 
-			            			th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-success">See more</a>				          		
-			          		</div>         	
-			          	</div>
-	        		</div>
-      			</div>
+				<div class="row">
+					<div th:each="piatto : ${buffet.piatti}" class="col">
+			        	<div class="card w-50 mt-2 rounded-3 mx-auto">
+				          	<div class="card-body">
+				            	<h5 th:text="${piatto.nome}" class="card-title">Ingredient name</h5>
+				            	<div class="text-center mt-1">
+				            		<span th:text="${piatto.descrizione}" class="card-text">Description</span>
+				            	</div>
+				            	
+				            	<div sec:authorize="hasAuthority('ADMIN')" class="container text-center">
+			            			<div class="row mt-4">
+			            				<div class="col-lg-6 col-md-6 mb-4">
+			            					<a th:text="#{chefList.seeMore}" 
+			            						th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-success">See more</a>
+			            				</div>
+			            				<div class="col-lg-6 col-md-6 mb-4">
+					            			<a th:text="#{adminHome.delete}" 
+						            			th:href="@{'/admin/deletePiatto' + '/' + ${piatto.id}}" class="btn btn-danger">Delete</a>
+					            		</div>				            				
+			            			</div>
+				            	</div>
+				            	
+				          		<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
+				          			<a th:text="#{chefList.seeMore}" 
+				            			th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-success">See more</a>				          		
+				          		</div>         	
+				          	</div>
+		        		</div>
+	      			</div>
+				</div>
 			</div>
 		</div>
 		

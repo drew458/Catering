@@ -13,10 +13,7 @@
 			<div th:if="${!chef.imageUrl.isEmpty()}">
 				<div class="container col-xxl-8 px-4 py-2">
 		            <div class="row flex-lg-row-reverse align-items-center g-5 py-2">
-		            	<div class="col-10 col-sm-8 col-lg-6">
-		                    <img th:src="${chef.imageUrl}" class="d-block mx-lg-auto img-fluid rounded-3" width="400" height="400">
-		                </div>
-		                <div class="col-lg-6">
+		            	<div class="col-lg-6">
 		                    <span class="h3 display-4 1h-1 mb-3" th:text="${chef.nome}">Nome</span>
 		                    <span>&nbsp;</span>
 		                    <span class="h3 display-4 1h-1 mb-3" th:text="${chef.cognome}">Cognome</span>
@@ -25,6 +22,9 @@
 								<span th:text="#{chefList.originCountry}" class="lead fw-bold">Origin country</span>
 				    			<span th:text="${chef.nazionalita}" class="lead">Italian</span>
 							</div>
+		                </div>
+		            	<div class="col-10 col-sm-8 col-lg-6">
+		                    <img th:src="${chef.imageUrl}" class="d-block mx-lg-auto img-fluid rounded-3" width="400" height="400">
 		                </div>
 		            </div>
 		        </div>

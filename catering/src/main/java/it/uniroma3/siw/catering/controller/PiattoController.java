@@ -1,5 +1,7 @@
 package it.uniroma3.siw.catering.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,11 +48,11 @@ public class PiattoController {
 	}
 	
 	@GetMapping("/admin/deletePiatto/{id}")
-	public String deletePiatto(@PathVariable("id") Long id, Model model){
+	public String deletePiatto(@PathVariable("id") Long id, HttpServletRequest request, Model model){
 		this.piattoService.deleteById(id);
-		model.addAttribute("messageEN", "Piatto deleted successfully");
-		model.addAttribute("messageIT", "Piatto eliminato correttamente");
-		return "operationSuccessful";
+		
+		String referer = request.getHeader("Referer");
+	    return "redirect:"+ referer;
 	}
 	
 	@PostMapping("/admin/addPiattoForm")

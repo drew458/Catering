@@ -13,12 +13,12 @@
 			<div th:if="${!piatto.imageUrl.isEmpty()}">
 				<div class="container col-xxl-8 px-4 py-2">
 		            <div class="row flex-lg-row-reverse align-items-center g-5 py-2">
-		            	<div class="col-10 col-sm-8 col-lg-6">
-		                    <img th:src="${piatto.imageUrl}" class="d-block mx-lg-auto img-fluid rounded-3" width="400" height="400">
-		                </div>
-		                <div class="col-lg-6">
+		            	<div class="col-lg-6">
 		                    <h3 class="display-4 1h-1 mb-3" th:text="${piatto.nome}">Nome</h3>
 		                    <p class="mt-2 1h-1 mb-3" th:text="${piatto.descrizione}">Cognome</p>
+		                </div>
+		            	<div class="col-10 col-sm-8 col-lg-6">
+		                    <img th:src="${piatto.imageUrl}" class="d-block mx-lg-auto img-fluid rounded-3" width="400" height="400">
 		                </div>
 		            </div>
 		        </div>
@@ -34,30 +34,32 @@
 			</div>			
 			
 			<div th:if="${!piatto.ingredienti.isEmpty()}" class="mt-4">
-				<h5 th:text="#{addPiatto.selectIngredients}" class="text-center">Ingredients</h5>
+				<h5 th:text="#{addPiatto.selectIngredients}" class="text-center display-6">Ingredients</h5>
 				
-				<div th:each="ingrediente : ${piatto.ingredienti}">
-		        	<div class="card w-50 mt-2 rounded-3 text-center mx-auto">
-			          	<div class="card-body">
-			            	<h5 th:text="${ingrediente.nome}" class="card-title">Ingredient name</h5>
-			            	<div th:if="${!ingrediente.origine.isEmpty()}" class="mt-2">
-								<span th:text="#{ingredient.origin}" class="">Origin</span>
-				    			<span th:text="${ingrediente.origine}" class="">Italian</span>
-							</div>
-			            	<div class="text-center mt-1">
-			            		<span th:text="${ingrediente.descrizione}" class="card-text">Description</span>
-			            	</div>
-			            	
-			            	<div sec:authorize="hasAuthority('ADMIN')" class="container text-center">
-		            			<div class="text-center mt-4">
-		            				<div class="mb-4">
-				            			<a th:text="#{adminHome.delete}" 
-					            			th:href="@{'/admin/deleteIngrediente' + '/' + ${ingrediente.id}}" class="btn btn-danger">Delete</a>
-				            		</div>				            				
-		            			</div>
-			            	</div>         	
-			          	</div>
-	        		</div>
+				<div class="row">
+					<div th:each="ingrediente : ${piatto.ingredienti}" class=" col p-2">
+						<div class="card w-50 mt-2 rounded-3 text-center mx-auto">
+				          	<div class="card-body">
+				            	<h5 th:text="${ingrediente.nome}" class="card-title">Ingredient name</h5>
+				            	<div th:if="${!ingrediente.origine.isEmpty()}" class="mt-2">
+									<span th:text="#{ingredient.origin}" class="">Origin</span>
+					    			<span th:text="${ingrediente.origine}" class="">Italian</span>
+								</div>
+				            	<div class="text-center mt-1">
+				            		<span th:text="${ingrediente.descrizione}" class="card-text">Description</span>
+				            	</div>
+				            	
+				            	<div sec:authorize="hasAuthority('ADMIN')" class="container text-center">
+			            			<div class="text-center mt-4">
+			            				<div class="mb-4">
+					            			<a th:text="#{adminHome.delete}" 
+						            			th:href="@{'/admin/deleteIngrediente' + '/' + ${ingrediente.id}}" class="btn btn-danger">Delete</a>
+					            		</div>				            				
+			            			</div>
+				            	</div>         	
+				          	</div>
+		        		</div>
+					</div>
       			</div>
 			</div>
 		</div>

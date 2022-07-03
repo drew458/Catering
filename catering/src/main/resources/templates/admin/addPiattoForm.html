@@ -7,7 +7,7 @@
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->
 
-	<div class="container text-center mt-4">
+	<div class="container text-center mt-4 w-75">
 		<div class="mb-4">
 	    	<h1 th:text="#{adminHome.addPiatto}">Aggiungi un nuovo piatto</h1>
 	    </div>
@@ -31,12 +31,16 @@
             </div>
             
             <div th:if"${!ingredientiList.isEmpty()}" class="form-group mb-6">
-				<label class="h5" for="ingredienti" th:text="#{addPiatto.selectIngredients}">Ingredienti</label>
-				<select class="form-select" th:field="${piatto.ingredienti}">
-					<option value="" th:text="#{addChef.select}" >Seleziona..</option>
-					<option th:each="ingrediente : ${ingredientiList}" th:value="${ingrediente.id}" 
-						th:text="${ingrediente.nome}">Nome ingrediente</option>
-				</select> 
+            	<div class="row">
+            		<span class="h4" th:text="#{addPiatto.selectIngredients}">Ingredienti</span>
+            		<div th:each="ingredente, itemStat : ${ingredientiList}" class="col">
+						<select class="form-select" th:field="${piatto.ingredienti[__${itemStat.index}__]}">
+							<option value="" th:text="#{addChef.select}" >Seleziona..</option>
+							<option th:each="ingrediente : ${ingredientiList}" th:value="${ingrediente.id}" 
+								th:text="${ingrediente.nome}">Nome ingrediente</option>
+						</select> 
+            		</div>
+            	</div> 
 			</div>
             
             <!-- Submit button -->
