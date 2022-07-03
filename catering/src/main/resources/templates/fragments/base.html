@@ -140,8 +140,12 @@
 	                	style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);"
 	                    data-popper-placement="bottom-end">
 	                    <li>
+	                    	<a class="dropdown-item rounded-2" th:text="#{navbar.changeName}" 
+	                        	th:href="@{/changeName}">Cambia nome e cognome</a>
+	                    </li>
+	                    <li>
 	                    	<a class="dropdown-item rounded-2" th:text="#{navbar.changePassword}" 
-	                        			th:href="@{/changePassword}">Cambia password</a>
+	                        	th:href="@{/changePassword}">Cambia password</a>
 	                    </li>
 	                    <li>
 	                        <hr class="dropdown-divider">

@@ -23,7 +23,6 @@ public class UserService {
      * @param id the id of the User to retrieve from the DB
      * @return the retrieved User, or null if no User with the passed ID could be found in the DB
      */
-    @Transactional
     public User getUser(Long id) {
         Optional<User> result = this.userRepository.findById(id);
         return result.orElse(null);
@@ -45,7 +44,6 @@ public class UserService {
      * This method retrieves all Users from the DB.
      * @return a List with all the retrieved Users
      */
-    @Transactional
     public List<User> getAllUsers() {
         List<User> result = new ArrayList<>();
         Iterable<User> iterable = this.userRepository.findAll();
@@ -53,4 +51,17 @@ public class UserService {
             result.add(user);
         return result;
     }
+
+    /***
+     * Updates the Nome and Cognome attributes of the user described by the id attribute 
+     * @param user the object witch cointains Nome and Cognome attributes to pass
+     * @param id the id of the user to update
+     */
+    @Transactional
+	public void updateNameAndSurname(User user, Long id) {
+		User toUpdateUser = this.getUser(id);
+		toUpdateUser.setNome(user.getNome());
+		toUpdateUser.setCognome(user.getCognome());
+		this.saveUser(toUpdateUser);		
+	}
 }

@@ -19,12 +19,16 @@ import it.uniroma3.siw.catering.controller.validator.UserValidator;
 import it.uniroma3.siw.catering.model.Credentials;
 import it.uniroma3.siw.catering.model.User;
 import it.uniroma3.siw.catering.service.CredentialsService;
+import it.uniroma3.siw.catering.service.UserService;
 
 @Controller
 public class AuthenticationController {
 
 	@Autowired
 	private CredentialsService credentialsService;
+	
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private UserValidator userValidator;
@@ -66,6 +70,15 @@ public class AuthenticationController {
 	public String showChangePasswordForm(Model model) {
 		model.addAttribute("credentials", new Credentials());
 		return "changePasswordForm";
+	}
+	
+	@GetMapping("/changeName")
+	public String showChangeNameForm(Model model) {
+		User user = this.credentialsService.getCredentials().getUser();
+		
+		model.addAttribute("user", user);
+		
+		return "changeNameForm";
 	}
 	
 	@GetMapping("/default")
@@ -211,5 +224,23 @@ public class AuthenticationController {
 			return "operationSuccessful";
 		}
 		return "changePasswordForm";
+	}
+	
+	@PostMapping("/changeName")
+	public String changeName(@ModelAttribute("user") User user, BindingResult userBindingResult, 
+			Model model) {
+		// validate name and surname fields
+		this.userValidator.validate(user, userBindingResult);
+
+		// if it hasn't invalid contents, store the Credentials into the DB
+		if(!userBindingResult.hasErrors()) {
+			// get the user and store the credentials;
+			// this also stores the User, thanks to Cascade.ALL policy
+			userService.updateNameAndSurname(user, user.getId());
+			model.addAttribute("messageEN", "Name and surname successfully changed!");
+			model.addAttribute("messageIT", "Nome e cognome cambiati correttamente!");
+			return "operationSuccessful";
+		}
+		return "changeNameForm";
 	}
 }

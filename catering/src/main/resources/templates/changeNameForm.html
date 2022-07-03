@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{piatto.title})">
+</head>
+<body>
+	<!-- START Navbar -->
+	<nav th:replace="fragments/base.html :: navbar"></nav>
+	<!-- END Navbar -->	
+
+	<div class="container text-center mt-4">
+        <div class="mb-4">	
+            <h1 th:text="#{changeName.header}">Cambia nome e cognome</h1>
+        </div>
+        
+        <form th:action="@{/changeName}" method="POST" th:object="${user}">            
+	        <input th:field="*{id}" type="hidden" />
+	        
+	        <!-- Nome input -->
+	        <div class="form-floating mb-4">
+	        	<input th:field="*{nome}" type="text" id="nome" class="form-control" 
+	        		th:placeholder="#{changeName.name}" />
+	        	<label th:text="#{changeName.name}" for="nome">Nome</label>
+	        </div>
+	        
+	        <!-- Cognome input -->
+	        <div class="form-floating mb-4">
+	        	<input th:field="*{cognome}" type="text" id="cognome" class="form-control" 
+	        		th:placeholder="#{changeName.surname}" />
+	        	<label th:text="#{changeName.surname}" for="cognome">Cognome</label>
+	        </div>
+            
+            <!-- Submit button -->
+            <button th:text="#{changeName.change}" type="submit" class="btn btn-success btn-block mb-4">Cambia username</button>
+        </form>                     
+    </div>
+</body>
+</html>
