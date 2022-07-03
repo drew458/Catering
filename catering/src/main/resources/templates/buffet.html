@@ -7,26 +7,73 @@
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->	
 
-    <div class="container text-center mt-4">
+    <div class="container text-center mt-4 pb-4">
 		<div th:if="${buffet}" th:object="${buffet}">
-  			<h3 th:text="${buffet.nome}" class="h3 mt-2">Nome</h3>
-    		<p th:text="${buffet.descrizione}" class="mt-2">descrizione</p>
-			
+		
 			<div th:if="${!buffet.imageUrl.isEmpty()}">
-				<img th:src="${buffet.imageUrl}" class="mt-4 img-fluid" />
+				<div class="container col-xxl-8 px-4 py-2">
+		            <div class="row flex-lg-row-reverse align-items-center g-5 py-2">
+		            	<div class="col-10 col-sm-8 col-lg-6">
+		                    <img th:src="${buffet.imageUrl}" class="d-block mx-lg-auto img-fluid rounded-3" width="400" height="400">
+		                </div>
+		                <div class="col-lg-6">
+		                    <h3 class="display-4 mt-2 1h-1 mb-3" th:text="${buffet.nome}">Nome</h3>
+		                    <p class="mt-2 1h-1 mb-3" th:text="${buffet.descrizione}">Descrizione</p>
+		                </div>
+		            </div>
+		        </div>
 			</div>
 			
-			<div th:if="${buffet.chefPreparatore}">
-				<div th:if="${!buffet.chefPreparatore.isEmpty()}">
-					<a th:text="#{addBuffet.selectChefAuthor}" th:href="@{'/chef' + '/' + ${buffet.chefPreparatore.getId()}}" />
-				</div>
+			<div th:unless="${!buffet.imageUrl.isEmpty()}">
+				<h3 th:text="${buffet.nome}" class="display-4 mt-2">Nome</h3>
+	    		<p th:text="${buffet.descrizione}" class="mt-2">descrizione</p>	
+			</div>			
+			
+			<div th:if="${buffet.chefPreparatore}" class="text-center mt-4">
+				<span th:text="#{addBuffet.selectChefAuthor}" class="h5 display-6">Chef author</span>
+				
+				<div class="card w-50 mt-2 rounded-3 mx-auto" >
+	          		<div th:if="${!buffet.chefPreparatore.imageUrl.isEmpty()}" class="card-img-top">
+	          			<img th:src="${buffet.chefPreparatore.imageUrl}" class="img-fluid rounded-3" style="height: auto; max-height: 220px; 
+	          				width: auto; max-width: 700px;" />
+	          		</div>
+		          	<div class="card-body">
+		          		<div class="text-center mt-2">
+		          			<span th:text="${buffet.chefPreparatore.nome}" class="h5 card-title">Nome</span>
+		            		<span th:text="${buffet.chefPreparatore.cognome}" class="h5 card-title">Cognome</span>
+		          		</div>
+		          		<div th:if="${!buffet.chefPreparatore.nazionalita.isEmpty()}" class="text-center mt-1">
+		          			<span th:text="#{chefList.originCountry} " class="card-text">Origin country</span>
+		            		<span th:text="${buffet.chefPreparatore.nazionalita}" class="card-text">Italian</span>
+		          		</div>
+		          		<div sec:authorize="hasAuthority('ADMIN')">
+			          		<div class="container text-center">
+			          			<div class="row mt-4">
+			          				<div class="col-lg-6 col-md-6 mb-4">
+					            		<a th:text="#{chefList.seeMore}" 
+					            			th:href="@{'/chef' + '/' + ${buffet.chefPreparatore.id}}" class="btn btn-success">See more</a>
+					            	</div>
+					            	<div class="col-lg-6 col-md-6 mb-4">
+					            		<a th:text="#{adminHome.delete}" 
+					            			th:href="@{'/deleteChef' + '/' + ${buffet.chefPreparatore.id}}" class="btn btn-danger">Delete</a>
+					            	</div>
+			          			</div>
+			          		</div>				          			
+		          		</div>         						            	
+		            	
+		            	<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
+		            		<a th:text="#{chefList.seeMore}" 
+		            			th:href="@{'/buffet.chefPreparatore' + '/' + ${buffet.chefPreparatore.id}}" class="btn btn-success">See more</a>
+		            	</div>				            	
+		          	</div>
+        		</div>
 			</div>
 						
 			<div th:if="${!buffet.piatti.isEmpty()}" class="mt-4">
 				<h5 th:text="#{navbar.dishes}">Dishes</h5>
 				
 				<div th:each="piatto : ${buffet.piatti}">
-		        	<div class="card">
+		        	<div class="card w-50 mt-2 rounded-3 mx-auto">
 			          	<div class="card-body">
 			            	<h5 th:text="${piatto.nome}" class="card-title">Ingredient name</h5>
 			            	<div class="text-center mt-1">
@@ -36,7 +83,7 @@
 			            	<div sec:authorize="hasAuthority('ADMIN')" class="container text-center">
 		            			<div class="row mt-4">
 		            				<div class="col-lg-6 col-md-6 mb-4">
-		            					<a th:text="#{buffetList.seeMore}" 
+		            					<a th:text="#{chefList.seeMore}" 
 		            						th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-success">See more</a>
 		            				</div>
 		            				<div class="col-lg-6 col-md-6 mb-4">
@@ -47,7 +94,7 @@
 			            	</div>
 			            	
 			          		<div sec:authorize="hasAuthority('DEFAULT')" class="text-center mt-2">
-			          			<a th:text="#{buffetList.seeMore}" 
+			          			<a th:text="#{chefList.seeMore}" 
 			            			th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-success">See more</a>				          		
 			          		</div>         	
 			          	</div>

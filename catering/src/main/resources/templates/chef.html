@@ -7,27 +7,51 @@
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->	
 		
-	<div class="container text-center mt-4">
+	<div class="container text-center mt-4 pb-4">
 		<div th:if="${chef}" th:object="${chef}">
-			<div class="mt-2">
-      			<span th:text="${chef.nome}" class="h3">Nome</span>
-        		<span th:text="${chef.cognome}" class="h3">Cognome</span>
-      		</div>
-      		
-      		<div th:if="${!chef.nazionalita.isEmpty()}" class="mt-2">
-				<span th:text="#{chefList.originCountry}" class="">Origin country</span>
-    			<span th:text="${chef.nazionalita}" class="">Italian</span>
+		
+			<div th:if="${!chef.imageUrl.isEmpty()}">
+				<div class="container col-xxl-8 px-4 py-2">
+		            <div class="row flex-lg-row-reverse align-items-center g-5 py-2">
+		            	<div class="col-10 col-sm-8 col-lg-6">
+		                    <img th:src="${chef.imageUrl}" class="d-block mx-lg-auto img-fluid rounded-3" width="400" height="400">
+		                </div>
+		                <div class="col-lg-6">
+		                    <span class="h3 display-4 1h-1 mb-3" th:text="${chef.nome}">Nome</span>
+		                    <span>&nbsp;</span>
+		                    <span class="h3 display-4 1h-1 mb-3" th:text="${chef.cognome}">Cognome</span>
+		                    
+		                    <div th:if="${!chef.nazionalita.isEmpty()}" class="mt-2">
+								<span th:text="#{chefList.originCountry}" class="lead fw-bold">Origin country</span>
+				    			<span th:text="${chef.nazionalita}" class="lead">Italian</span>
+							</div>
+		                </div>
+		            </div>
+		        </div>
 			</div>
 			
-			<div th:if="${!chef.imageUrl.isEmpty()}">
-				<img th:src="${chef.imageUrl}" class="mt-4 img-fluid" width="600" height="600"/>
-			</div>			
-			
-			<div th:if="${!chef.buffetProposti.isEmpty()}" class="mt-4">
-				<h5 th:text="#{addChef.selectOfferedBuffet}">Offered buffets</h5>
+			<div th:unless="${!chef.imageUrl.isEmpty()}">
+				<div class="mt-2">
+	      			<span th:text="${chef.nome}" class="h3 display-4">Nome</span>
+	      			<span>&nbsp;</span>
+	        		<span th:text="${chef.cognome}" class="h3 display-4">Cognome</span>
+	      		</div>
+	      		
+	      		<div th:if="${!chef.nazionalita.isEmpty()}" class="mt-2">
+					<span th:text="#{chefList.originCountry}" class="">Origin country</span>
+	    			<span th:text="${chef.nazionalita}" class="">Italian</span>
+				</div>
 				
-				<div th:each="buffet : ${chef.buffetProposti}">
-		        	<div class="card">
+				<div th:if="${!chef.imageUrl.isEmpty()}">
+					<img th:src="${chef.imageUrl}" class="mt-4 img-fluid" width="600" height="600"/>
+				</div>	
+			</div>
+	        
+			<div th:if="${!chef.buffetProposti.isEmpty()}" class="p-5">
+				<span th:text="#{addChef.selectOfferedBuffet}" class="h5 display-6">Offered buffets</span>
+				
+				<div th:each="buffet : ${chef.buffetProposti}" class="mt-2">
+		        	<div class="card w-50 mt-2 rounded-3 mx-auto">
 		          		<div th:if="${!buffet.imageUrl.isEmpty()}" class="card-img-top">
 		          			<img th:src="${buffet.imageUrl}" class="img-fluid" />
 		          		</div>

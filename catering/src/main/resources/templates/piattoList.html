@@ -15,7 +15,8 @@
     			<div th:each="piatto : ${piatti}" class="col-lg-4 col-md-6 mb-4">
 		    		<div class="card">
 		          		<div th:if="${!piatto.imageUrl.isEmpty()}" class="card-img-top">
-		          			<img th:src="'${piatto.imageUrl}" class="img-fluid" />
+		          			<img th:src="${piatto.imageUrl}" class="img-fluid rounded-3" style="height: auto; max-height: 220px; 
+		          				width: auto; max-width: 700px;" />
 		          		</div>
 			          	<div class="card-body">
 			            	<h5 th:text="${piatto.nome}" class="card-title">Piatto name</h5>

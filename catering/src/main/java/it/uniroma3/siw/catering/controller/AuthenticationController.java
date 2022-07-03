@@ -72,48 +72,49 @@ public class AuthenticationController {
 	public String defaultAfterLogin(Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		
 		model.addAttribute("user", credentials.getUser());
+		model.addAttribute("role", this.credentialsService.getCredentials().getRole());
 		return "index";
 	}
 	
 	@GetMapping("/oauthDefault")
 	public String defaultAfterOAuthLogin(Model model, OAuth2AuthenticationToken authentication) {		
-		// User got logged in via OAuth 2
-		
-		OAuth2User oAuth2User = authentication.getPrincipal();		
-		System.out.println(authentication.getPrincipal().getClass());
+		OAuth2User oAuth2User = authentication.getPrincipal();
 		Map<String,Object> attributes = oAuth2User.getAttributes();
+		Credentials oauthCredentials = new Credentials();
+		User oauthUser = new User();
+		
 		if(authentication.getAuthorizedClientRegistrationId().equals("google")) {
 			Credentials userCredentials = credentialsService.getCredentials((String) attributes.get("email"));
-		    if(userCredentials != null) {
+		    
+			if(userCredentials != null) {
 		    	model.addAttribute("user", userCredentials.getUser());
 		    }
 		    else {
-		    	Credentials oauthCredentials = new Credentials();
-			    User oauthUser = new User();
 			    oauthUser.setNome((String) attributes.get("name"));
 			    oauthCredentials.setUser(oauthUser);
 			    oauthCredentials.setUsername((String) attributes.get("email"));
 			    credentialsService.saveCredentials(oauthCredentials, false);
-			    model.addAttribute("user", oauthUser);
 		    }
 		}
+		
 		if(authentication.getAuthorizedClientRegistrationId().equals("github")) {
 			Credentials userCredentials = credentialsService.getCredentials((String) attributes.get("login"));
+			
 		    if(userCredentials != null) {
 		    	model.addAttribute("user", userCredentials.getUser());
 		    }
 		    else {
-		    	Credentials oauthCredentials = new Credentials();
-			    User oauthUser = new User();
 			    String userName= (String) attributes.get("login");
 			    oauthUser.setNome(userName);
 			    oauthCredentials.setUser(oauthUser);
 			    oauthCredentials.setUsername(userName);
 			    credentialsService.saveCredentials(oauthCredentials, false);
-			    model.addAttribute("user", oauthUser);
 		    }
 		}
+		
+		model.addAttribute("role", this.credentialsService.getCredentials().getRole());
 		
 		return "index";
 	}

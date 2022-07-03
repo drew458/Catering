@@ -43,4 +43,16 @@ public class MainController {
 		model.addAttribute("piatto", this.piattoService.findAll());
 		return "piatti";
 	}
+	
+	@GetMapping("/contactUs")
+	public String contactUs(Model model) {
+		return "contactPage";
+	}
+	
+	@GetMapping("/messageSent")
+	public String messageSent(Model model) {
+		model.addAttribute("messageEN", "Thanks for contacting us, we will let you know asap!");
+		model.addAttribute("messageIT", "Grazie per averci contattato, ti risponderemo il prima possibile!");
+		return "operationSuccessful";
+	}
 }

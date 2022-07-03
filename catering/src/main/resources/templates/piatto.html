@@ -7,20 +7,37 @@
 	<nav th:replace="fragments/base.html :: navbar"></nav>
 	<!-- END Navbar -->	
 
-    <div class="container text-center mt-4">
+    <div class="container text-center mt-4 pb-4">
 		<div th:if="${piatto}" th:object="${piatto}">
-  			<h3 th:text="${piatto.nome}" class="h3 mt-2">Nome</h3>
-    		<p th:text="${piatto.descrizione}" class="mt-2">descrizione</p>
 			
 			<div th:if="${!piatto.imageUrl.isEmpty()}">
-				<img th:src="${piatto.imageUrl}" class="mt-4 img-fluid" />
+				<div class="container col-xxl-8 px-4 py-2">
+		            <div class="row flex-lg-row-reverse align-items-center g-5 py-2">
+		            	<div class="col-10 col-sm-8 col-lg-6">
+		                    <img th:src="${piatto.imageUrl}" class="d-block mx-lg-auto img-fluid rounded-3" width="400" height="400">
+		                </div>
+		                <div class="col-lg-6">
+		                    <h3 class="display-4 1h-1 mb-3" th:text="${piatto.nome}">Nome</h3>
+		                    <p class="mt-2 1h-1 mb-3" th:text="${piatto.descrizione}">Cognome</p>
+		                </div>
+		            </div>
+		        </div>
+			</div>
+			
+			<div th:unless="${!piatto.imageUrl.isEmpty()}">
+				<h3 th:text="${piatto.nome}" class="display-4 mt-2">Nome</h3>
+	    		<p th:text="${piatto.descrizione}" class="mt-2">descrizione</p>
+				
+				<div th:if="${!piatto.imageUrl.isEmpty()}">
+					<img th:src="${piatto.imageUrl}" class="mt-4 img-fluid" />
+				</div>		
 			</div>			
 			
-			<div th:if="${!piatto.ingredientiList.isEmpty()}" class="mt-4">
-				<h5 th:text="#{addPiatto.selectIngredients}">Ingredients</h5>
+			<div th:if="${!piatto.ingredienti.isEmpty()}" class="mt-4">
+				<h5 th:text="#{addPiatto.selectIngredients}" class="text-center">Ingredients</h5>
 				
-				<div th:each="ingrediente : ${piatto.ingredientiList}">
-		        	<div class="card">
+				<div th:each="ingrediente : ${piatto.ingredienti}">
+		        	<div class="card w-50 mt-2 rounded-3 text-center mx-auto">
 			          	<div class="card-body">
 			            	<h5 th:text="${ingrediente.nome}" class="card-title">Ingredient name</h5>
 			            	<div th:if="${!ingrediente.origine.isEmpty()}" class="mt-2">

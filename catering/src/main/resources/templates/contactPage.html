@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{index.title})">
+</head>
+<body>
+	<!-- START Navbar -->
+	<nav th:replace="fragments/base.html :: navbar"></nav>
+	<!-- END Navbar -->
+
+    <div class="container text-center mt-4">
+        <div class="mb-4">
+            <h1 th:text="#{index.contact}">Contattaci</h1>
+        </div>
+        
+        <form th:action="@{/messageSent}" method="GET">
+            <!-- Name input -->
+            <div class="form-floating mb-4">
+                <input type="text" id="mail" class="form-control" 
+                	th:placeholder="#{contactPage.name}" />
+	        	<label th:text="#{contactPage.name}" for="mail">Nome</label>
+              </div>
+            
+	        <!-- Mail input -->
+	        <div class="form-floating mb-4">
+	        	<input type="text" id="mail" class="form-control" 
+	        		th:placeholder="#{contactPage.mail}" required />
+	        	<label th:text="#{contactPage.mail}" for="mail">Mail</label>
+	        </div>
+
+            <!-- Message input -->
+            <div class="form-group mb-4">
+            	<textarea id="message" class="form-control" type="text" th:placeholder="#{contactPage.message}"></textarea>
+            </div>
+            
+            <!-- Submit button -->
+            <button th:text="#{contactPage.send}" class="btn btn-success btn-block mb-4">Invia</button>
+        </form>
+                               
+    </div>
+
+</body>
+</html>
