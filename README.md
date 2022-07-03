@@ -2,7 +2,7 @@
 
 A website to show offerings from a catering company.
 
-## Technical Implementations
+## Technical Features
 * Login with OAuth 2.0 (Google, Github)
 * Cloud hosted (AWS)
 * Admin mode for editing
