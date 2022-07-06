@@ -38,7 +38,7 @@
 				
 				<div class="row">
 					<div th:each="ingrediente : ${piatto.ingredienti}" class=" col p-2">
-						<div class="card w-50 mt-2 rounded-3 text-center mx-auto">
+						<div class="card w-50 mt-2 border-0 text-center mx-auto">
 				          	<div class="card-body">
 				            	<h5 th:text="${ingrediente.nome}" class="card-title">Ingredient name</h5>
 				            	<div th:if="${!ingrediente.origine.isEmpty()}" class="mt-2">
@@ -61,6 +61,10 @@
 		        		</div>
 					</div>
       			</div>
+			</div>
+			
+			<div th:unless="${!piatto.ingredienti.isEmpty()}" class="p-5">
+				<p class="lead" th:text="#{piatto.noIngredienti}">No ingredients for this buffet!</p>
 			</div>
 		</div>
 		

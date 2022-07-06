@@ -51,7 +51,7 @@
 				<span th:text="#{addChef.selectOfferedBuffet}" class="h5 display-6">Offered buffets</span>
 				
 				<div th:each="buffet : ${chef.buffetProposti}" class="mt-2">
-		        	<div class="card w-50 mt-2 rounded-3 mx-auto">
+		        	<div class="card w-50 mt-2 border-0 mx-auto">
 		          		<div th:if="${!buffet.imageUrl.isEmpty()}" class="card-img-top">
 		          			<img th:src="${buffet.imageUrl}" class="img-fluid" />
 		          		</div>
@@ -81,6 +81,10 @@
 			          	</div>
 	        		</div>
       			</div>
+			</div>
+			
+			<div th:unless="${!chef.buffetProposti.isEmpty()}" class="p-5">
+				<p class="lead" th:text="#{chef.noOfferedBuffets}">No offered buffets here!</p>
 			</div>
 		</div>
 		

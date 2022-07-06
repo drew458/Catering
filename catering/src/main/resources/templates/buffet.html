@@ -32,7 +32,7 @@
 			<div th:if="${buffet.chefPreparatore}" class="text-center mt-4">
 				<span th:text="#{addBuffet.selectChefAuthor}" class="h5 display-6">Chef author</span>
 				
-				<div class="card w-50 mt-2 rounded-3 mx-auto" >
+				<div class="card w-50 mt-2 border-0 mx-auto" >
 	          		<div th:if="${!buffet.chefPreparatore.imageUrl.isEmpty()}" class="card-img-top">
 	          			<img th:src="${buffet.chefPreparatore.imageUrl}" class="img-fluid rounded-3" style="height: auto; max-height: 220px; 
 	          				width: auto; max-width: 700px;" />
@@ -74,7 +74,7 @@
 				
 				<div class="row">
 					<div th:each="piatto : ${buffet.piatti}" class="col">
-			        	<div class="card w-50 mt-2 rounded-3 mx-auto">
+			        	<div class="card w-50 mt-2 border-0 mx-auto">
 				          	<div class="card-body">
 				            	<h5 th:text="${piatto.nome}" class="card-title">Ingredient name</h5>
 				            	<div class="text-center mt-1">
@@ -102,6 +102,10 @@
 		        		</div>
 	      			</div>
 				</div>
+			</div>
+			
+			<div th:unless="${!buffet.piatti.isEmpty()}" class="p-5">
+				<p class="lead" th:text="#{buffet.noPiatto}">No dish for this buffet!</p>
 			</div>
 		</div>
 		

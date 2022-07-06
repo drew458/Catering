@@ -39,7 +39,7 @@
 				</select>
 			</div>
 			
-			<div th:if="${!piattoList.isEmpty()}" class="form-group mt-2 mb-6">
+			<div th:if="${!piattoList.isEmpty()}" class="form-group mt-3 mb-6">
 				<label class="h5" for="piatto" th:text="#{addBuffet.selectPiatto}">Piatti</label>
 				<select class="form-select" th:field="${buffet.piatti}">
 					<option value="" th:text="#{addChef.select}" >Seleziona..</option>

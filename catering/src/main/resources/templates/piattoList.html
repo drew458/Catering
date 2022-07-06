@@ -48,7 +48,7 @@
     	</div>
     	
     	<div th:unless="${!piatti.isEmpty()}" sec:authorize="hasAuthority('ADMIN')">
-    		<p th:text="#{piattoList.noPiattoFound}">No dishes here!</p>
+    		<p class="lead" th:text="#{piattoList.noPiattoFound}">No dishes here!</p>
     		<a th:text="#{adminHome.addPiatto}" th:href="@{/admin/addPiatto}" class="btn btn-success">Add piatto</a>
     	</div>
     	
